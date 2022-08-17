@@ -1,5 +1,5 @@
-root: ./docs/
+root: ./docs/build/markdown
 
 structure:
     readme: README.md
-    summary: /build/markdown/index.md
+    summary: index.md
