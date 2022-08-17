@@ -11,4 +11,4 @@
 * pip install artifician
 
 
-* conda install artifician
+* conda install -c plato_solutions artifician
