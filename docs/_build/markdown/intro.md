@@ -15,7 +15,7 @@ Key features of artifician library:
 * Saves up to 50% of time
 
 
-* Less lines of code
+* Fewer lines of code
 
 
 * Makes code more readable and easy to manage
@@ -34,7 +34,11 @@ and convert it to numerical format while maintaining the sequential information.
 
 ## Without artifician library
 
-```default
+```python
+from urllib.parse import urlparse
+import re 
+import pandas as pd
+
 sample_data = ['https://www.example.com/path/path1/path2', 'https://www.example.com/path/path1/path2/path3']
 path_map = []
 
@@ -85,10 +89,10 @@ Now let’s prepare the same dataset using artifician library
 
 ## Using artifician library
 
-```default
+```python
 from urllib.parse import urlparse
 from artifician import *
-from artifician.Processors import *
+from artifician.processors import *
 
 
 def extract_path(url):
