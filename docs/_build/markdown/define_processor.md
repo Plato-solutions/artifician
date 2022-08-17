@@ -7,7 +7,7 @@ example for defining a new processor.
 First of all, we need to set up the connection between the publisher and the processor.
 Inside the subscribe method you should define the logic for the making the connection.
 
-```default
+```python
 def subscribe(self, publisher, pool_scheduler=None):
 
     observable = publisher.observe(publisher.EVENT_PROCESSED)
@@ -25,7 +25,7 @@ You need to pass [scheduler](https://rxpy.readthedocs.io/en/latest/reference_sch
 
 Now, you just need to define the process method of the processor.
 
-```default
+```python
 def process(self, publisher, value):
 
     processed_value = value * 2
@@ -39,15 +39,15 @@ of predefined processor to get the better understanding.
 
 Let’s look at how the final processor would look like.
 
-```default
-from . import Processor
+```python
+from artifician.processors import Processor
 
 class split_string(Processor.processor):
 
     def process(self, publisher, string):
 
-        string_spllited = string.split(" ")
-        publisher.feature_value = string_splitted
+        splitted_string = string.split(" ")
+        publisher.feature_value = splitted_string
 
     def subscribe(self, publisher, pool_scheduler=None):
 
