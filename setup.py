@@ -5,11 +5,11 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="artifician",
-    version="0.1.4b1",
+    version="0.1.5b1",
     description="Artifician is an event driven framework developed to simplify the process of preparation of the dataset for Artificial Intelligence models.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/Plato-solutions/artifician",
     author="Abhijeet Gandhi",
     author_email="abhijeet.gandhi@platoanalytics.com",
     license="Apache-2.0",
