@@ -2,7 +2,6 @@
  
  Let’s break down the simple code example to fully understand the working of the library.
  
- 
  ---
  
  ## Define Extractor

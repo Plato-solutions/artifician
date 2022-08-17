@@ -7,8 +7,12 @@
 
 ## Installation
 
+```sh
+# or PyPI
+pip install artifician
+```
 
-* pip install artifician
-
-
-* conda install -c plato_solutions artifician
+```sh
+# conda
+conda install -c plato_solutions artifician
+```
