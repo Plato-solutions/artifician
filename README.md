@@ -23,10 +23,10 @@ Artifician is an event driven framework developed to simplify and speed up the p
 
 </div>
   
-# Pre-requisites  
+## Pre-requisites  
 - [**python**](https://www.python.org/) **v3.6** or later  
   
-# Installation 
+## Installation 
 Binary installers for the latest released version are available at the Python Package Index (PyPI) and on Conda
 
 ```sh
@@ -39,7 +39,7 @@ conda install -c plato_solutions artifician
 pip install artifician
 ```
   
-# Usage  
+## Usage  
   
 ```python  
 from artifician.dataset import *
