@@ -1,0 +1,10 @@
+include setup.py
+include setup.cfg
+include README.md
+include requirements.txt
+include LICENSE
+include MANIFEST.in
+
+graft docs
+graft artifician
+graft tests
