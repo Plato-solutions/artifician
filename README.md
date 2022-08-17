@@ -30,13 +30,13 @@ Artifician is an event driven framework developed to simplify and speed up the p
 Binary installers for the latest released version are available at the Python Package Index (PyPI) and on Conda
 
 ```sh
-# conda
-conda install -c plato_solutions artifician
+# or PyPI
+pip install artifician
 ```
 
 ```sh
-# or PyPI
-pip install artifician
+# conda
+conda install -c plato_solutions artifician
 ```
   
 ## Usage  
