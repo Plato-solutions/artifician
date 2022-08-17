@@ -17,11 +17,13 @@
   
 <p align="center">  
   
-Artifician is an event driven framework developed to simplify and speed up the process of preparation of the datasets for Artificial Intelligence models.
+Artifician is an event driven library developed to simplify and speed up the process of preparation of the datasets for Artificial Intelligence models.
   
 <br />  
 
 </div>
+
+# Getting Started
   
 ## Pre-requisites  
 - [**python**](https://www.python.org/) **v3.6** or later  
