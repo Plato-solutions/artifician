@@ -124,5 +124,4 @@ dmypy.json
 .pyre/
 
 
-/conda/
 /conda-out/
