@@ -123,5 +123,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.conda/
-.conda-out/
+
+/conda/
+/conda-out/
