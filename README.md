@@ -42,7 +42,7 @@ conda install -c plato_solutions artifician
 ```
 
 ## Documentation
-Please visit [docs.plato-solutions.io/artifician](https://plato-solutions.gitbook.io/artifician/)
+Please visit [Aritfician Docs](https://plato-solutions.gitbook.io/artifician/)
   
 ## Usage  
   
