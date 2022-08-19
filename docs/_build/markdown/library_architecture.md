@@ -9,7 +9,7 @@ The Architecture diagram represents the relationship between different component
 
 
 
-![image](_static/artifician_library.png)
+![image](../../_static/artifician_library.png)
 
 
 ---

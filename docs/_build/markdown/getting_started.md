@@ -3,7 +3,7 @@
 ## Pre-requisites
 
 
-* [python](https://www.python.org/) **v3.9** or later
+* [python](https://www.python.org/) **v3.6** or later
 
 ## Installation
 
