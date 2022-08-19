@@ -26,13 +26,10 @@ Artifician is an event driven library developed to simplify and speed up the pro
 # Getting Started
   
 ## Pre-requisites  
-- [**python**](https://www.python.org/) **v3.6** or later  
-  
+- [**python**](https://www.python.org/) **v3.6** or later
+
 ## Installation 
 Binary installers for the latest released version are available at the Python Package Index (PyPI) and on Conda
-
-## Documentation
-Please visit [docs.plato-solutions.io/artifician](https://plato-solutions.gitbook.io/artifician/)
 
 ```sh
 # or PyPI
@@ -43,6 +40,9 @@ pip install artifician
 # conda
 conda install -c plato_solutions artifician
 ```
+
+## Documentation
+Please visit [docs.plato-solutions.io/artifician](https://plato-solutions.gitbook.io/artifician/)
   
 ## Usage  
   
