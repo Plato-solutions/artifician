@@ -31,6 +31,9 @@ Artifician is an event driven library developed to simplify and speed up the pro
 ## Installation 
 Binary installers for the latest released version are available at the Python Package Index (PyPI) and on Conda
 
+## Documentation
+Please visit [docs.plato-solutions.io/artifician](https://plato-solutions.gitbook.io/artifician/)
+
 ```sh
 # or PyPI
 pip install artifician
