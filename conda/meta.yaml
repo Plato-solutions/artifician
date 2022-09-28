@@ -9,15 +9,15 @@ about:
 source:
   path: ..
 build:
-  number: 2
+  number: 6
 test:
   imports:
     - artifician
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
   run:
-    - python >=3.6
+    - python
     - rx
     - pandas
