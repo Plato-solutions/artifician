@@ -35,11 +35,11 @@ class FeatureDefinition:
         self.MAP_VALUES = self.map
 
     def process(self, publisher, sample):
-        """process the artifician to build feature value
+        """process the sample to build feature value
         process should contain all the logic for completely processing the feature value
 
         Args:
-            sample (any): artifician data
+            sample (any): sample data
             publisher (object): instance of publisher
 
         Return:
