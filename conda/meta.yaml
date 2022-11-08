@@ -1,23 +1,24 @@
 package:
   name: "artifician"
-  version: "0.1.5"
+  version: "0.1.8"
 about:
   home: "https://github.com/Plato-solutions/artifician"
   license: "Apache-2.0"
   license_file: "LICENSE"
-  summary: "Artifician is an event driven framework developed to simplify the process of preparation of the dataset for Artificial Intelligence models."
+  summary: "Artifician is an event driven library developed to simplify the process of preparation of the dataset for Artificial Intelligence models."
 source:
   path: ..
 build:
-  number: 6
+  noarch: python
+  number: 1
 test:
   imports:
     - artifician
 requirements:
   host:
-    - python
+    - python >=3.6
     - pip
   run:
-    - python
+    - python >=3.6
     - rx
     - pandas
