@@ -13,6 +13,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 """
+from typing import Tuple, Any
+
 from rx.subject import Subject
 
 
@@ -25,12 +27,14 @@ class FeatureDefinition:
         extractor (function): extract feature value from the artifician
         EVENT_PROCESSED (function): event that processes the feature
         MAP_VALUES (function): event that maps values of feature
+        extractor_parameters (*args): parameters for extractor function
     """
 
-    def __init__(self, extractor=lambda sample: sample):
+    def __init__(self, extractor=lambda sample: sample, *extractor_parameters):
         self.value = None
         self.cached = {}
         self.extractor = extractor
+        self.extractor_parameters = extractor_parameters
         self.EVENT_PROCESSED = self.process
         self.MAP_VALUES = self.map
 
@@ -45,7 +49,9 @@ class FeatureDefinition:
         Return:
             feature_processed (list): processed feature_raw
         """
-        self.value = self.extractor(sample)
+
+        # noinspection PyArgumentList
+        self.value = self.extractor(sample, *self.extractor_parameters)
 
         if self.process in self.cached:
             self.cached[self.process].on_next(self.value)
