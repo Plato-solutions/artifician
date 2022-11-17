@@ -18,7 +18,7 @@ As in this case extractor extracts the domain name from the url.
 
 Initialize components
 ---------------------------
-Next, we simply initialize the dataset , FeatureDefinition and Processor object which is the normalizer in this case.
+Next, we simply initialize the Dataset , FeatureDefinition and Processor object which is the normalizer in this case.
 We need to pass the extractor function as the parameter while initializing the FeatureDefinition object.
 Normalizer is just one of the Processor which helps in processing the extracted feature data.
 ::
