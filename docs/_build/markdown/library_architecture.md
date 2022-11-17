@@ -1,15 +1,15 @@
 # Library Architecture
 
-This section helps you to understand the core components of the artifician Library.
+This section helps you to understand the core components of the Artifician.
 
 
 ---
 
-The Architecture diagram represents the relationship between different components of the Sample Library.
+The Architecture diagram represents the relationship between different components of the Artifician.
 
 
 
-![image](../../_static/artifician_library.png)
+![image](_static/artifician_library.png)
 
 
 ---
@@ -30,7 +30,7 @@ The Architecture diagram represents the relationship between different component
 
 ## Feature Definition
 
-> Feature Definition is responsible for getting feature data.
+> Feature Definition is responsible for preparing feature data.
 > Feature Definition extract the Feature value from the sample received, using custom
 > extractor function and then the feature value is processed by the processors if any.
 > Feature Definition can act as a both publisher and the observer.

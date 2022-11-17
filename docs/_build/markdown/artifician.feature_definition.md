@@ -1,7 +1,21 @@
 # artifician.feature_definition module
 
+Copyright 2021 Plato Solutions, Inc.
 
-### _class_ artifician.feature_definition.FeatureDefinition(extractor=<function FeatureDefinition.<lambda>>)
+Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+> [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+### _class_ artifician.feature_definition.FeatureDefinition(extractor=<function FeatureDefinition.<lambda>>, \*extractor_parameters)
 Bases: `object`
 
 Contains all the functionality for preparing single feature
@@ -13,6 +27,13 @@ Attributes:
     extractor (function): extract feature value from the artifician
     EVENT_PROCESSED (function): event that processes the feature
     MAP_VALUES (function): event that maps values of feature
+    extractor_parameters (
+
+    ```
+    *
+    ```
+
+    args): parameters for extractor function
 
 
 #### map(feature_value)
@@ -40,12 +61,12 @@ Return:
 
 
 #### process(publisher, sample)
-process the artifician to build feature value
+process the sample to build feature value
 process should contain all the logic for completely processing the feature value
 
 Args:
 
-    sample (any): artifician data
+    sample (any): sample data
     publisher (object): instance of publisher
 
 Return:

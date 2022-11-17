@@ -2,20 +2,20 @@
 
 Preparing dataset for AI (Artificial Intelligence) models is a difficult and a time consuming job.
 A typical ML engineer spends days, weeks and sometimes months preparing the dataset. With the help
-of artifician library developers will be able to prepare dataset in very less time.
+of Artifician library developers will be able to prepare dataset in very less time.
 
-artifician is a event driven framework developed to simplify and speed up the process of preparation
-of the datasets for AI models. artifician contains predefined set of processors for converting unstructured
+Artifician is a event driven framework developed to simplify and speed up the process of preparation
+of the datasets for AI models. Artifician contains predefined set of processors for converting unstructured
 data into structured data. You can use them or define your own if you don’t find the one that fulfill your needs.
 The ultimate aim is to have as many as processors that developers will no longer need to define any new processors.
 
-Key features of artifician library:
+Key features of Artifician:
 
 
 * Saves up to 50% of time
 
 
-* Fewer lines of code
+* Less lines of code
 
 
 * Makes code more readable and easy to manage
@@ -28,17 +28,13 @@ Key features of artifician library:
 
 ## Simple Example
 
-Let’s take a simple example to understand the impact of the artifician library.
+Let’s take a simple example to understand the impact of the Artifician.
 Here will take urls as the raw data and try to extract the directory path of the url
 and convert it to numerical format while maintaining the sequential information.
 
-## Without artifician library
+## Without Artifician
 
-```python
-from urllib.parse import urlparse
-import re 
-import pandas as pd
-
+```default
 sample_data = ['https://www.example.com/path/path1/path2', 'https://www.example.com/path/path1/path2/path3']
 path_map = []
 
@@ -85,14 +81,14 @@ Here you can notice how each and every function is tightly coupled to each other
 lead to changes in several other places. This code is just for preparing a single feature.
 Just imagine the level of complexity when writing code for preparing tens and hundreds of features.
 
-Now let’s prepare the same dataset using artifician library
+Now let’s prepare the same dataset using Artifician
 
-## Using artifician library
+## Using Artifician
 
-```python
+```default
 from urllib.parse import urlparse
 from artifician import *
-from artifician.processors import *
+from artifician.Processors import *
 
 
 def extract_path(url):
@@ -124,7 +120,24 @@ You can add, remove and update features very easily without worrying about anyth
 Here we used normalizer and mapper which are inbuilt processors in artifician library.
 
 ## Output
-| index | 0                                              | 1            | 
-|-------|------------------------------------------------|--------------|
-| 0     | https://www.example.com/path/path1/path2       | [0, 1, 2]    |
-| 1     | https://www.example.com/path/path1/path2/path3 | [0, 1, 2, 3] |
+
+|  | 0
+
+ | 1
+
+ |
+|  | - | - |
+| 0
+
+ | [https://www.example.com/path/path1/path2](https://www.example.com/path/path1/path2)
+
+ | [0, 1, 2]
+
+ |
+| 1
+
+ | [https://www.example.com/path/path1/path2/path3](https://www.example.com/path/path1/path2/path3)
+
+ | [0, 1, 2, 3]
+
+ |

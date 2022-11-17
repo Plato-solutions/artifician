@@ -11,10 +11,10 @@ contain the root `toctree` directive. -->
     * [Simple Example](intro.md#simple-example)
 
 
-    * [Without artifician library](intro.md#without-artifician-library)
+    * [Without Artifician](intro.md#without-artifician)
 
 
-    * [Using artifician library](intro.md#using-artifician-library)
+    * [Using Artifician](intro.md#using-artifician)
 
 
     * [Output](intro.md#output)
@@ -89,10 +89,73 @@ contain the root `toctree` directive. -->
                     * [artifician.processors.mapper module](artifician.processors.mapper.md)
 
 
+                        * [`FeatureMap`](artifician.processors.mapper.md#artifician.processors.mapper.FeatureMap)
+
+
+                            * [`FeatureMap.get_value_id()`](artifician.processors.mapper.md#artifician.processors.mapper.FeatureMap.get_value_id)
+
+
+                        * [`Mapper`](artifician.processors.mapper.md#artifician.processors.mapper.Mapper)
+
+
+                            * [`Mapper.process()`](artifician.processors.mapper.md#artifician.processors.mapper.Mapper.process)
+
+
+                            * [`Mapper.subscribe()`](artifician.processors.mapper.md#artifician.processors.mapper.Mapper.subscribe)
+
+
                     * [artifician.processors.normalizer module](artifician.processors.normalizer.md)
 
 
+                        * [`KeyValuesNormalizer`](artifician.processors.normalizer.md#artifician.processors.normalizer.KeyValuesNormalizer)
+
+
+                            * [`KeyValuesNormalizer.normalize()`](artifician.processors.normalizer.md#artifician.processors.normalizer.KeyValuesNormalizer.normalize)
+
+
+                            * [`KeyValuesNormalizer.normalize_key_values()`](artifician.processors.normalizer.md#artifician.processors.normalizer.KeyValuesNormalizer.normalize_key_values)
+
+
+                        * [`Normalizer`](artifician.processors.normalizer.md#artifician.processors.normalizer.Normalizer)
+
+
+                            * [`Normalizer.process()`](artifician.processors.normalizer.md#artifician.processors.normalizer.Normalizer.process)
+
+
+                            * [`Normalizer.subscribe()`](artifician.processors.normalizer.md#artifician.processors.normalizer.Normalizer.subscribe)
+
+
+                        * [`NormalizerStrategy`](artifician.processors.normalizer.md#artifician.processors.normalizer.NormalizerStrategy)
+
+
+                            * [`NormalizerStrategy.normalize()`](artifician.processors.normalizer.md#artifician.processors.normalizer.NormalizerStrategy.normalize)
+
+
+                        * [`PathsNormalizer`](artifician.processors.normalizer.md#artifician.processors.normalizer.PathsNormalizer)
+
+
+                            * [`PathsNormalizer.get_path_values()`](artifician.processors.normalizer.md#artifician.processors.normalizer.PathsNormalizer.get_path_values)
+
+
+                            * [`PathsNormalizer.normalize()`](artifician.processors.normalizer.md#artifician.processors.normalizer.PathsNormalizer.normalize)
+
+
+                        * [`PropertiesNormalizer`](artifician.processors.normalizer.md#artifician.processors.normalizer.PropertiesNormalizer)
+
+
+                            * [`PropertiesNormalizer.normalize()`](artifician.processors.normalizer.md#artifician.processors.normalizer.PropertiesNormalizer.normalize)
+
+
                     * [artifician.processors.processor module](artifician.processors.processor.md)
+
+
+                        * [`Processor`](artifician.processors.processor.md#artifician.processors.processor.Processor)
+
+
+                            * [`Processor.process()`](artifician.processors.processor.md#artifician.processors.processor.Processor.process)
+
+
+                            * [`Processor.subscribe()`](artifician.processors.processor.md#artifician.processors.processor.Processor.subscribe)
 
 
         * [Submodules](API.md#submodules)
@@ -101,4 +164,31 @@ contain the root `toctree` directive. -->
             * [artifician.dataset module](artifician.dataset.md)
 
 
+                * [`Dataset`](artifician.dataset.md#artifician.dataset.Dataset)
+
+
+                    * [`Dataset.add_samples()`](artifician.dataset.md#artifician.dataset.Dataset.add_samples)
+
+
+                    * [`Dataset.observe()`](artifician.dataset.md#artifician.dataset.Dataset.observe)
+
+
+                    * [`Dataset.post_process()`](artifician.dataset.md#artifician.dataset.Dataset.post_process)
+
+
             * [artifician.feature_definition module](artifician.feature_definition.md)
+
+
+                * [`FeatureDefinition`](artifician.feature_definition.md#artifician.feature_definition.FeatureDefinition)
+
+
+                    * [`FeatureDefinition.map()`](artifician.feature_definition.md#artifician.feature_definition.FeatureDefinition.map)
+
+
+                    * [`FeatureDefinition.observe()`](artifician.feature_definition.md#artifician.feature_definition.FeatureDefinition.observe)
+
+
+                    * [`FeatureDefinition.process()`](artifician.feature_definition.md#artifician.feature_definition.FeatureDefinition.process)
+
+
+                    * [`FeatureDefinition.subscribe()`](artifician.feature_definition.md#artifician.feature_definition.FeatureDefinition.subscribe)

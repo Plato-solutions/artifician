@@ -1,5 +1,19 @@
 # artifician.processors.mapper module
 
+Copyright 2021 Plato Solutions, Inc.
+
+Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+> [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
 
 ### _class_ artifician.processors.mapper.FeatureMap(values_map={})
 Bases: `object`
@@ -26,7 +40,7 @@ Return:
 
 
 ### _class_ artifician.processors.mapper.Mapper(feature_map, map_key_values=False)
-Bases: [`artifician.processors.processor.Processor`](artifician.processors.processor.md#artifician.processors.processor.Processor)
+Bases: [`Processor`](artifician.processors.processor.md#artifician.processors.processor.Processor)
 
 Mapper is a processor responsible for mapping/converting feature values to int
 
