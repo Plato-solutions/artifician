@@ -27,11 +27,13 @@ def extract_filename(url):
         return ''
 
 
-def extract_path(url):
+def extract_path(url, delimiter, path_joiner):
     """extract the path of the url
 
     Args:
         url(string): url
+        delimiter(string): delimiter to split the path
+        path_joiner(string): path joiner to join the path
 
     Return:
         url_path(string): path of the url
@@ -40,7 +42,7 @@ def extract_path(url):
     url_path = urlparse(url).path
 
     if url_path.endswith('html'):
-        url_path = '/'.join(url_path.split('/')[:-1])
+        url_path = path_joiner.join(url_path.split(delimiter)[:-1])
 
     return url_path
 
@@ -57,7 +59,7 @@ class test_FeatureDefinition(unittest.TestCase):
         dataset = Dataset()
 
         url_filename = FeatureDefinition(extract_filename)
-        url_path = FeatureDefinition(extract_path)
+        url_path = FeatureDefinition(extract_path, "/", "/")
         properties_normalizer = Normalizer(PropertiesNormalizer(), delimiter={'delimiter': ["--"]})
         paths_normalizer = Normalizer(PathsNormalizer(), delimiter={'delimiter': ["/"]})
 

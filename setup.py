@@ -5,7 +5,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="artifician",
-    version="0.1.5b1",
+    version="0.1.7b1",
     description="Artifician is an event driven framework developed to simplify the process of preparation of the dataset for Artificial Intelligence models.",
     long_description=long_description,
     long_description_content_type="text/markdown",
