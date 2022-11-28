@@ -121,7 +121,7 @@ Here we used normalizer and mapper which are inbuilt processors in artifician li
 
 ## Output
 
-|   | 0                                                                                                | 1            | 
-|---|--------------------------------------------------------------------------------------------------|--------------|
-| 0 | [https://www.example.com/path/path1/path2](https://www.example.com/path/path1/path2)             | [0, 1, 2]    |
+|   | 0  | 1            | 
+|---| -- | ------------ |
+| 0 | [https://www.example.com/path/path1/path2](https://www.example.com/path/path1/path2) | [0, 1, 2]    |
 | 1 | [https://www.example.com/path/path1/path2/path3](https://www.example.com/path/path1/path2/path3) | [0, 1, 2, 3] |
