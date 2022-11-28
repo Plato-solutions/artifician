@@ -63,23 +63,7 @@ and whenever process method of the FeatureDefinition is called Processor execute
 
 ## Output
 
-|  | 0
-
- | 1
-
- |
-| - | ---------------------------------------------- | ------------ |  |  |  |
-| 0
-
- | [https://www.google.com/](https://www.google.com/)
-
-                        | [(www, 0), (google, 1), (com, 2)]
-
- |
-| 0
-
- | [https://www.youtube.com/](https://www.youtube.com/)
-
-                       | [(www, 0), (youtube, 1), (com, 2)]
-
- |
+|   | 0 | 1 |
+| - | ---------------------------------------------- | ------------ | 
+| 0 | [https://www.google.com/](https://www.google.com/) | [(www, 0), (google, 1), (com, 2)]|
+| 0 | [https://www.youtube.com/](https://www.youtube.com/) | [(www, 0), (youtube, 1), (com, 2)] |
