@@ -1,10 +1,10 @@
 # Introduction
 
-Preparing dataset for AI (Artificial Intelligence) models is a difficult and a time consuming job.
+Preparing dataset for AI (Artificial Intelligence) models is a difficult and a time-consuming job.
 A typical ML engineer spends days, weeks and sometimes months preparing the dataset. With the help
 of Artifician library developers will be able to prepare dataset in very less time.
 
-Artifician is a event driven framework developed to simplify and speed up the process of preparation
+Artifician is an event driven framework developed to simplify and speed up the process of preparation
 of the datasets for AI models. Artifician contains predefined set of processors for converting unstructured
 data into structured data. You can use them or define your own if you don’t find the one that fulfill your needs.
 The ultimate aim is to have as many as processors that developers will no longer need to define any new processors.
@@ -15,7 +15,7 @@ Key features of Artifician:
 * Saves up to 50% of time
 
 
-* Less lines of code
+* Fewer lines of code
 
 
 * Makes code more readable and easy to manage
@@ -115,13 +115,13 @@ prepared_data = dataset.add_samples(sample_data)
 print(prepared_data)
 ```
 
-artifician library decouples all the entities and hence makes it very easy to manage.
+Artifician library decouples all the entities and hence makes it very easy to manage.
 You can add, remove and update features very easily without worrying about anything else.
 Here we used normalizer and mapper which are inbuilt processors in artifician library.
 
 ## Output
 
-|   | 0                                                                                               |           1 | 
-|   | ------------------------------------------------------------------------------------------------| ----------- |
-| 0 | [https://www.example.com/path/path1/path2](https://www.example.com/path/path1/path2)            | [0, 1, 2]   |
-| 1 | [https://www.example.com/path/path1/path2/path3](https://www.example.com/path/path1/path2/path3)| [0, 1, 2, 3]|
+|     | 0                                                                                                | 1            | 
+|-----|--------------------------------------------------------------------------------------------------|--------------|
+| 0   | [https://www.example.com/path/path1/path2](https://www.example.com/path/path1/path2)             | [0, 1, 2]    |
+| 1   | [https://www.example.com/path/path1/path2/path3](https://www.example.com/path/path1/path2/path3) | [0, 1, 2, 3] |
