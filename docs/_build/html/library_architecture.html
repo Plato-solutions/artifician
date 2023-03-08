@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library Architecture &mdash; artifician Library 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API" href="modules.html" />
+    <link rel="prev" title="Defining new processor" href="define_processor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            artifician Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="advanced_concepts.html">Advanced Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="define_processor.html">Defining new processor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Library Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#events">Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dataset">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-definition">Feature Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#processors">Processors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rxpy">RxPY</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">artifician Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="advanced_concepts.html">Advanced Concepts</a></li>
+      <li class="breadcrumb-item active">Library Architecture</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/library_architecture.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="library-architecture">
+<h1>Library Architecture<a class="headerlink" href="#library-architecture" title="Permalink to this heading"></a></h1>
+<p>This section helps you to understand the core components of the Artifician.</p>
+<hr class="docutils" />
+<p>The Architecture diagram represents the relationship between different components of the Artifician.</p>
+<a class="reference internal image-reference" href="_images/artifician_library.png"><img alt="_images/artifician_library.png" src="_images/artifician_library.png" style="width: 800px;" /></a>
+<hr class="docutils" />
+<section id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Events are the part of the life cycle of the program. The entity which creates and
+triggers events is called as publisher, and entity which listens (observes) to those is
+called as an observer. Events makes whole systems decoupled and very flexible.
+Events are nothing but the python functions.</p>
+</div></blockquote>
+</section>
+<section id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Dataset is responsible for storing and maintaining the prepared data.
+Dataset has events which can be observed by any of the observer.
+Dataset contains the <a class="reference external" href="https://pandas.pydata.org/">pandas.DataFrame</a> object to store the
+prepared data.</p>
+</div></blockquote>
+</section>
+<section id="feature-definition">
+<h2>Feature Definition<a class="headerlink" href="#feature-definition" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Feature Definition is responsible for preparing feature data.
+Feature Definition extract the Feature value from the sample received, using custom
+extractor function and then the feature value is processed by the processors if any.
+Feature Definition can act as a both publisher and the observer.
+It can create events of its own, as well as subscribe to events created by publishers.</p>
+</div></blockquote>
+</section>
+<section id="processors">
+<h2>Processors<a class="headerlink" href="#processors" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Processor is responsible for processing data. Processor subscribes to the events created by publishers.</p>
+</div></blockquote>
+</section>
+<section id="rxpy">
+<h2>RxPY<a class="headerlink" href="#rxpy" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>For publishing and subscribing events we are using a <a class="reference external" href="https://rxpy.readthedocs.io/en/latest/">RxPY</a>  library
+which is a set of libraries for composing asynchronous and event-based programs using observable sequences
+and pipable query operators in Python.</p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="define_processor.html" class="btn btn-neutral float-left" title="Defining new processor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Abhijeet Gandhi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

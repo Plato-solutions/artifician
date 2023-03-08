@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; artifician Library 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation Guide" href="getting_started.html" />
+    <link rel="prev" title="Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            artifician Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-example">Simple Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#without-artifician">Without Artifician</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-artifician">Using Artifician</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_concepts.html">Advanced Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">artifician Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
+<p>Preparing dataset for AI (Artificial Intelligence) models is a difficult and a time consuming job.
+A typical ML engineer spends days, weeks and sometimes months preparing the dataset. With the help
+of Artifician library developers will be able to prepare dataset in very less time.</p>
+<p>Artifician is a event driven framework developed to simplify and speed up the process of preparation
+of the datasets for AI models. Artifician contains predefined set of processors for converting unstructured
+data into structured data. You can use them or define your own if you don’t find the one that fulfill your needs.
+The ultimate aim is to have as many as processors that developers will no longer need to define any new processors.</p>
+<p>Key features of Artifician:</p>
+<ul class="simple">
+<li><p>Saves up to 50% of time</p></li>
+<li><p>Less lines of code</p></li>
+<li><p>Makes code more readable and easy to manage</p></li>
+<li><p>CPU Concurrency</p></li>
+</ul>
+<hr class="docutils" />
+<section id="simple-example">
+<h2>Simple Example<a class="headerlink" href="#simple-example" title="Permalink to this heading"></a></h2>
+<p>Let’s take a simple example to understand the impact of the Artifician.
+Here will take urls as the raw data and try to extract the directory path of the url
+and convert it to numerical format while maintaining the sequential information.</p>
+</section>
+<section id="without-artifician">
+<h2>Without Artifician<a class="headerlink" href="#without-artifician" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sample_data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.example.com/path/path1/path2&#39;</span><span class="p">,</span> <span class="s1">&#39;https://www.example.com/path/path1/path2/path3&#39;</span><span class="p">]</span>
+<span class="n">path_map</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">extract_path</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+
+    <span class="n">url_path</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">path</span>
+
+    <span class="k">if</span> <span class="n">url_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">):</span>
+        <span class="n">url_path</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">url_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">url_path</span>
+
+<span class="k">def</span> <span class="nf">normalize_path</span><span class="p">(</span><span class="n">url_path</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+
+    <span class="n">url_path</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">delimiter</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">url_path</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">url_path</span>
+
+<span class="k">def</span> <span class="nf">map_path_values</span><span class="p">(</span><span class="n">url_path</span><span class="p">):</span>
+
+    <span class="n">path_values_map</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">url_path</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path_map</span><span class="p">:</span>
+            <span class="n">path_map</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="n">path_values_map</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path_map</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">path_values_map</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">sample_data</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">extract_path</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+    <span class="n">normalized_path</span> <span class="o">=</span> <span class="n">normalize_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="n">mapped_path</span> <span class="o">=</span> <span class="n">map_path_values</span><span class="p">(</span><span class="n">normalized_path</span><span class="p">)</span>
+    <span class="n">sample_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample</span><span class="p">,</span> <span class="n">mapped_path</span><span class="p">]</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">sample_data</span><span class="p">),</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here you can notice how each and every function is tightly coupled to each other and a single change will
+lead to changes in several other places. This code is just for preparing a single feature.
+Just imagine the level of complexity when writing code for preparing tens and hundreds of features.</p>
+<p>Now let’s prepare the same dataset using Artifician</p>
+</section>
+<section id="using-artifician">
+<h2>Using Artifician<a class="headerlink" href="#using-artifician" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+<span class="kn">from</span> <span class="nn">artifician</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">artifician.Processors</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="k">def</span> <span class="nf">extract_path</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">url_path</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">path</span>
+
+    <span class="k">if</span> <span class="n">url_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">):</span>
+        <span class="n">url_path</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">url_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">url_path</span>
+
+
+<span class="n">sample_data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.example.com/path/path1/path2&#39;</span><span class="p">,</span> <span class="s1">&#39;https://www.example.com/path/path1/path2/path3&#39;</span><span class="p">]</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="p">()</span>
+<span class="n">url_domain</span> <span class="o">=</span> <span class="n">FeatureDefinition</span><span class="o">.</span><span class="n">FeatureDefinition</span><span class="p">(</span><span class="n">extract_path</span><span class="p">)</span>
+<span class="n">normalizer</span> <span class="o">=</span> <span class="n">Normalizer</span><span class="p">(</span><span class="n">PathsNormalizer</span><span class="p">(),</span> <span class="n">delimiter</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;delimiter&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="p">]})</span>
+<span class="n">mapper</span> <span class="o">=</span> <span class="n">Mapper</span><span class="o">.</span><span class="n">Mapper</span><span class="p">(</span><span class="n">Mapper</span><span class="o">.</span><span class="n">FeatureMap</span><span class="p">())</span>
+
+<span class="n">normalizer</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">url_domain</span><span class="p">)</span>
+<span class="n">mapper</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">url_domain</span><span class="p">)</span>
+<span class="n">url_domain</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="n">prepared_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">add_samples</span><span class="p">(</span><span class="n">sample_data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prepared_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>artifician library decouples all the entities and hence makes it very easy to manage.
+You can add, remove and update features very easily without worrying about anything else.
+Here we used normalizer and mapper which are inbuilt processors in artifician library.</p>
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p><a class="reference external" href="https://www.example.com/path/path1/path2">https://www.example.com/path/path1/path2</a></p></td>
+<td><p>[0, 1, 2]</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p><a class="reference external" href="https://www.example.com/path/path1/path2/path3">https://www.example.com/path/path1/path2/path3</a></p></td>
+<td><p>[0, 1, 2, 3]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Installation Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Abhijeet Gandhi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

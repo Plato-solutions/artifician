@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>artifician.processors.normalizer module &mdash; artifician Library 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="artifician.processors.processor module" href="artifician.processors.processor.html" />
+    <link rel="prev" title="artifician.processors.mapper module" href="artifician.processors.mapper.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            artifician Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_concepts.html">Advanced Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="API.html">artifician package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="API.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="artifician.processors.html">artifician.processors package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="API.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">artifician Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">API</a></li>
+          <li class="breadcrumb-item"><a href="API.html">artifician package</a></li>
+          <li class="breadcrumb-item"><a href="artifician.processors.html">artifician.processors package</a></li>
+      <li class="breadcrumb-item active">artifician.processors.normalizer module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/artifician.processors.normalizer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-artifician.processors.normalizer">
+<span id="artifician-processors-normalizer-module"></span><h1>artifician.processors.normalizer module<a class="headerlink" href="#module-artifician.processors.normalizer" title="Permalink to this heading"></a></h1>
+<p>Copyright 2021 Plato Solutions, Inc.</p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<blockquote>
+<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+</div></blockquote>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.KeyValuesNormalizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">artifician.processors.normalizer.</span></span><span class="sig-name descname"><span class="pre">KeyValuesNormalizer</span></span><a class="headerlink" href="#artifician.processors.normalizer.KeyValuesNormalizer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#artifician.processors.normalizer.NormalizerStrategy" title="artifician.processors.normalizer.NormalizerStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalizerStrategy</span></code></a></p>
+<p>split by delimiter into a format that preserves value and label association found.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.KeyValuesNormalizer.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.KeyValuesNormalizer.normalize" title="Permalink to this definition"></a></dt>
+<dd><p>split by delimiter into a format that preserves value and label association found.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>feature_raw (string): feature_raw
+delimiter: delimiter is used for breaking string</p>
+</dd>
+<dt>Return:</dt><dd><p>feature_normalized (list): list of tuple of normalized feature text values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.KeyValuesNormalizer.normalize_key_values">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normalize_key_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.KeyValuesNormalizer.normalize_key_values" title="Permalink to this definition"></a></dt>
+<dd><p>break down text using assignment into key value pair</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>key_values (list): list of strings
+assignment (string): string that separates key and values</p>
+</dd>
+<dt>Return:</dt><dd><p>feature_normalized (list): list of tuple of normalized feature text values</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.Normalizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">artifician.processors.normalizer.</span></span><span class="sig-name descname"><span class="pre">Normalizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.Normalizer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="artifician.processors.processor.html#artifician.processors.processor.Processor" title="artifician.processors.processor.Processor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Processor</span></code></a></p>
+<p>Normalize the given string value</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>strategy (NormalizerStrategy): strategy for normalizing string
+delimiter (dictionary): delimiter for splitting the string</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.Normalizer.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">publisher</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.Normalizer.process" title="Permalink to this definition"></a></dt>
+<dd><p>Normalize the feature_raw value
+Note : publisher.feature_value is updated instead of returning the value as normalizer
+being a processor</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>publisher (object): instance of the publisher
+feature_raw (string): feature value</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.Normalizer.subscribe">
+<span class="sig-name descname"><span class="pre">subscribe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">publisher</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_scheduler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.Normalizer.subscribe" title="Permalink to this definition"></a></dt>
+<dd><p>Defines logic for subscribing to an event in publisher</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>publisher (object): instance of the publisher
+pool_scheduler (rx.scheduler.ThreadPoolScheduler): scheduler instance for concurrency</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.NormalizerStrategy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">artifician.processors.normalizer.</span></span><span class="sig-name descname"><span class="pre">NormalizerStrategy</span></span><a class="headerlink" href="#artifician.processors.normalizer.NormalizerStrategy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>interface for normalizer strategies</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.NormalizerStrategy.normalize">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.NormalizerStrategy.normalize" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.PathsNormalizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">artifician.processors.normalizer.</span></span><span class="sig-name descname"><span class="pre">PathsNormalizer</span></span><a class="headerlink" href="#artifician.processors.normalizer.PathsNormalizer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#artifician.processors.normalizer.NormalizerStrategy" title="artifician.processors.normalizer.NormalizerStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalizerStrategy</span></code></a></p>
+<p>split by delimiter into a format that preserves position within tree of each value found</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.PathsNormalizer.get_path_values">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_path_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_raw_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.PathsNormalizer.get_path_values" title="Permalink to this definition"></a></dt>
+<dd><p>gets path values sequentially</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>feature_raw_values (list): list of strings
+delimiter (string): delimiter is used for breaking string</p>
+</dd>
+<dt>Return:</dt><dd><p>feature_normalized (list): list of tuple of normalized feature text values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.PathsNormalizer.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.PathsNormalizer.normalize" title="Permalink to this definition"></a></dt>
+<dd><p>split by delimiter into a format that preserves position within tree of each value found</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>feature_raw (string): feature text
+delimiter (dict): delimiter is used for breaking string</p>
+</dd>
+<dt>Return:</dt><dd><p>feature_normalized (list): list of tuple of normalized feature text values</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.PropertiesNormalizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">artifician.processors.normalizer.</span></span><span class="sig-name descname"><span class="pre">PropertiesNormalizer</span></span><a class="headerlink" href="#artifician.processors.normalizer.PropertiesNormalizer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#artifician.processors.normalizer.NormalizerStrategy" title="artifician.processors.normalizer.NormalizerStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalizerStrategy</span></code></a></p>
+<p>Split by delimiter into a format that preserves the sequential position of each value found.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.PropertiesNormalizer.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.PropertiesNormalizer.normalize" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>split by delimiter into format that preserves sequential position</dt><dd><p>of each value in feature text found</p>
+</dd>
+<dt>Args:</dt><dd><p>delimiter: delimiter is used for breaking string
+feature_raw (string): feature_raw</p>
+</dd>
+<dt>Return:</dt><dd><p>feature_normalized (list):  list of tuple of normalized feature raw</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.StrategySelector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">artifician.processors.normalizer.</span></span><span class="sig-name descname"><span class="pre">StrategySelector</span></span><a class="headerlink" href="#artifician.processors.normalizer.StrategySelector" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Based on the text input select the appropriate normalizer strategy to normalize the text</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.StrategySelector.get_key_values_delimiter">
+<span class="sig-name descname"><span class="pre">get_key_values_delimiter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.StrategySelector.get_key_values_delimiter" title="Permalink to this definition"></a></dt>
+<dd><p>Identify whether the given texts is a key values string if yes return the appropriate delimiter to normalize text</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>texts (str): list of strings</p>
+</dd>
+<dt>Returns:</dt><dd><p>Bool (True/False): True if the given texts is identified as key:values text else returns false</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.StrategySelector.get_paths_delimiter">
+<span class="sig-name descname"><span class="pre">get_paths_delimiter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.StrategySelector.get_paths_delimiter" title="Permalink to this definition"></a></dt>
+<dd><p>Identify whether the given texts is a paths string if yes return the appropriate delimiter to normalize text</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>texts (list): list of strings</p>
+</dd>
+<dt>Returns:</dt><dd><p>Bool (True/False): True if the given texts is identified as paths texts</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.StrategySelector.get_properties_delimiter">
+<span class="sig-name descname"><span class="pre">get_properties_delimiter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.StrategySelector.get_properties_delimiter" title="Permalink to this definition"></a></dt>
+<dd><p>Identify whether the given texts is a properties string if yes return the appropriate delimiter to normalize text</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>texts (str): list of strings</p>
+</dd>
+<dt>Returns:</dt><dd><p>delimiter (dict): delimiter to normalize the string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="artifician.processors.normalizer.StrategySelector.select">
+<span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#artifician.processors.normalizer.StrategySelector.select" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Args:</dt><dd><p>texts(list): list of strings</p>
+</dd>
+<dt>Returns:</dt><dd><p>strategy (NormalizerStrategy): NormalizerStrategy instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="artifician.processors.mapper.html" class="btn btn-neutral float-left" title="artifician.processors.mapper module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="artifician.processors.processor.html" class="btn btn-neutral float-right" title="artifician.processors.processor module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Abhijeet Gandhi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
