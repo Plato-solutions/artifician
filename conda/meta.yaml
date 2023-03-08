@@ -1,6 +1,6 @@
 package:
   name: "artifician"
-  version: "0.1.9"
+  version: "0.2.0"
 about:
   home: "https://github.com/Plato-solutions/artifician"
   license: "Apache-2.0"
