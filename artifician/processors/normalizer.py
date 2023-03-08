@@ -26,7 +26,7 @@ class Normalizer(processor.Processor):
         delimiter (dictionary): delimiter for splitting the string
     """
 
-    def __init__(self, strategy, delimiter):
+    def __init__(self, strategy=None, delimiter=None):
         """Initialize the Normalizer by setting up the normalizer strategy and the delimiter
 
         Args:
@@ -48,6 +48,10 @@ class Normalizer(processor.Processor):
         Returns:
             None
         """
+        # if no strategy is provided, an appropriate strategy is selected based on feature_raw value
+        if self.strategy is None:
+            self.strategy, self.delimiter = StrategySelector().select(feature_raw)
+
         publisher.value = self.strategy.normalize(feature_raw, self.delimiter)
 
     def subscribe(self, publisher, pool_scheduler=None):
@@ -178,3 +182,105 @@ class KeyValuesNormalizer(NormalizerStrategy):
         feature_normalized = self.normalize_key_values(key_values, delimiter['assignment'])
 
         return feature_normalized
+
+
+class StrategySelector:
+    """Based on the text input select the appropriate normalizer strategy to normalize the text"""
+
+    def get_paths_delimiter(self, texts):
+        """Identify whether the given texts is a paths string if yes return the appropriate delimiter to normalize text
+
+        Args:
+            texts (list): list of strings
+
+        Returns:
+            Bool (True/False): True if the given texts is identified as paths texts
+
+        """
+        delimiter = None
+        delimiter_count = 0
+
+        for text in texts:
+            delimiter_count += text.count("/")
+
+        if delimiter_count >= len(texts): delimiter = {"delimiter": "/"}
+
+        return delimiter
+
+    def get_key_values_delimiter(self, texts):
+        """Identify whether the given texts is a key values string if yes return the appropriate delimiter to normalize text
+
+        Args:
+            texts (str): list of strings
+
+        Returns:
+            Bool (True/False): True if the given texts is identified as key:values text else returns false
+
+        """
+        assignment_operator, delimiter = None, None
+        assignment_counts = {"colon_count": 0, "equal_to_count": 0}
+        delimiter_counts = {"ampersand_count": 0, "comma_count": 0}
+
+        for text in texts:
+            assignment_counts["colon_count"] += text.count(":")
+            assignment_counts["equal_to_count"] += text.count("=")
+            delimiter_counts["ampersand_count"] += text.count("&")
+            delimiter_counts["comma_count"] += text.count(",")
+
+        if assignment_counts["colon_count"] > assignment_counts["equal_to_count"] and assignment_counts["colon_count"] >= len(texts):
+            assignment_operator = ":"
+        elif assignment_counts["equal_to_count"] >= len(texts):
+            assignment_operator = "="
+        if assignment_operator:
+            if delimiter_counts["ampersand_count"] > delimiter_counts["comma_count"]:
+                delimiter = "&"
+            elif delimiter_counts["comma_count"] > 0:
+                delimiter = ","
+            else:
+                delimiter = " "
+            return {"delimiter": delimiter, "assignment": assignment_operator}
+
+        return None
+
+    def get_properties_delimiter(self, texts):
+        """Identify whether the given texts is a properties string if yes return the appropriate delimiter to normalize text
+
+        Args:
+            texts (str): list of strings
+
+        Returns:
+            delimiter (dict): delimiter to normalize the string
+        """
+
+        delimiter_counts = {" ": 0, ",": 0, "-": 0, "_": 0}
+
+        for text in texts:
+            delimiter_counts[" "] += text.count(" ")
+            delimiter_counts[","] += text.count(",")
+            delimiter_counts["-"] += text.count("-")
+            delimiter_counts["_"] += text.count("_")
+
+        delimiter = max(zip(delimiter_counts.values(), delimiter_counts.keys()))[1]
+
+        return {"delimiter": delimiter}
+
+    def select(self, texts):
+        """
+
+        Args:
+            texts(list): list of strings
+
+        Returns:
+            strategy (NormalizerStrategy): NormalizerStrategy instance
+        """
+        if type(texts) == str:
+            texts = [texts]
+        paths_delimiter = self.get_paths_delimiter(texts)
+        key_values_delimiter = self.get_key_values_delimiter(texts)
+        properties_delimiter = self.get_properties_delimiter(texts)
+
+        if paths_delimiter:
+            return [PathsNormalizer(), paths_delimiter]
+        elif key_values_delimiter:
+            return [KeyValuesNormalizer(), key_values_delimiter]
+        return [PropertiesNormalizer(), properties_delimiter]
