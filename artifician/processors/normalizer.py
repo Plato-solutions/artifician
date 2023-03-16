@@ -273,14 +273,11 @@ class StrategySelector:
         Returns:
             strategy (NormalizerStrategy): NormalizerStrategy instance
         """
-        if type(texts) == str:
-            texts = [texts]
-        paths_delimiter = self.get_paths_delimiter(texts)
-        key_values_delimiter = self.get_key_values_delimiter(texts)
-        properties_delimiter = self.get_properties_delimiter(texts)
+        if type(texts) == str: texts = [texts]
+        if type(texts) == int: return None
 
-        if paths_delimiter:
-            return [PathsNormalizer(), paths_delimiter]
-        elif key_values_delimiter:
-            return [KeyValuesNormalizer(), key_values_delimiter]
+        paths_delimiter, key_values_delimiter, properties_delimiter = self.get_paths_delimiter(texts), self.get_key_values_delimiter(texts), self.get_properties_delimiter(texts)
+
+        if paths_delimiter: return [PathsNormalizer(), paths_delimiter]
+        elif key_values_delimiter: return [KeyValuesNormalizer(), key_values_delimiter]
         return [PropertiesNormalizer(), properties_delimiter]
