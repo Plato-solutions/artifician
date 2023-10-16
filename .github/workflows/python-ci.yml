@@ -122,8 +122,9 @@ jobs:
       run: conda install pip --yes
     - name: Install Python packages from requirements.txt
       run: pip install -r requirements.txt
-    - name: Install Problematic Packages via Conda with specific channel
-      run: conda install -c conda-forge rx  # <- This is the updated line
+    - name: add conda channel
+      run: conda config --add channels conda-forge
+           conda config --add channels anaconda
     - name: Build and Publish to Anaconda
       env:
         ANACONDA_USERNAME: ${{ secrets.ANACONDA_USERNAME }}
