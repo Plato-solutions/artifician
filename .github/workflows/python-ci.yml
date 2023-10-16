@@ -33,6 +33,7 @@ jobs:
         sudo apt update
         sudo apt install gh
     - name: Bump version and create a pull request
+      id: bump_version
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
@@ -61,15 +62,15 @@ jobs:
     needs: bump_version
     runs-on: ubuntu-latest
     steps:
-      - name: Create GitHub Release
-        uses: actions/create-release@v1
-        with:
-          tag_name: ${{ env.NEW_VERSION }}
-          release_name: Release ${{ env.NEW_VERSION }}
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ needs.bump_version.outputs.version }}  # Access output variable from bump_version job
+        release_name: Release ${{ needs.bump_version.outputs.version }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }
 
 
   deploy-pypi:
