@@ -54,8 +54,14 @@ jobs:
         # Create a pull request using GitHub CLI
         gh pr create --base main --head bump-version-$NEW_VERSION --title "Bump version to $NEW_VERSION" --body "Automatic version bump to $NEW_VERSION"
 
-    - name: Debug Output Variable
-      run: echo "Output variable should be ${{ steps.bump_version.outputs.version }}"
+    - name: Save NEW_VERSION to an artifact
+      run: echo "${{ env.NEW_VERSION }}" > new_version.txt
+    - name: Upload new_version artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: new_version
+        path: new_version.txt
+
 
   create_release:
     needs: bump_version
@@ -63,6 +69,12 @@ jobs:
     env:
       TAG_NAME: ${{ needs.bump_version.outputs.new_version }}
     steps:
+    - name: Download new_version artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: new_version
+    - name: Set TAG_NAME from artifact
+      run: echo "TAG_NAME=$(cat new_version.txt)" >> $GITHUB_ENV
     - name: Create GitHub Release
       uses: actions/create-release@v1
       with:
