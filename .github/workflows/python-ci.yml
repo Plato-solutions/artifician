@@ -38,19 +38,20 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-            
-        # Create a new branch
-        git checkout -b bump-version
-            
+        
+        # Create a new branch with a unique name
         NEW_VERSION=$(python -c 'version = open("VERSION").read().strip().split("."); version[-1] = str(int(version[-1]) + 1); print(".".join(version))')
+        git checkout -b bump-version-$NEW_VERSION
+    
         echo $NEW_VERSION > VERSION
-            
+    
         git add VERSION
         git commit -m "Bump version to $NEW_VERSION"
-        git push origin bump-version
-            
+        git push origin bump-version-$NEW_VERSION
+    
         # Create a pull request using GitHub CLI
-        gh pr create --base main --head bump-version --title "Bump version to $NEW_VERSION" --body "Automatic version bump to $NEW_VERSION"
+        gh pr create --base main --head bump-version-$NEW_VERSION --title "Bump version to $NEW_VERSION" --body "Automatic version bump to $NEW_VERSION"
+
 
 
   create_release:
