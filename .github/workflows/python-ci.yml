@@ -59,13 +59,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create GitHub Release
-        id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ env.NEW_VERSION }}
+          release_name: Release ${{ env.NEW_VERSION }}
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
   deploy-pypi:
     needs: create_release
