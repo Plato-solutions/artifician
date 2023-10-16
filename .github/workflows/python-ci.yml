@@ -41,6 +41,9 @@ jobs:
         
         # Create a new branch with a unique name
         NEW_VERSION=$(python -c 'version = open("VERSION").read().strip().split("."); version[-1] = str(int(version[-1]) + 1); print(".".join(version))')
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+        echo "NEW_VERSION=$NEW_VERSION"  # To make sure it's set correctly
+        echo "::set-output name=version::$NEW_VERSION"
         git checkout -b bump-version-$NEW_VERSION
     
         echo $NEW_VERSION > VERSION
