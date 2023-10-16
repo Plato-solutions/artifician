@@ -33,7 +33,7 @@ jobs:
         sudo apt update
         sudo apt install gh
     - name: Bump version and create a pull request
-      id: bump_version
+      id: bump_version_step
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
@@ -45,6 +45,7 @@ jobs:
         echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
         echo "NEW_VERSION=$NEW_VERSION"  # To make sure it's set correctly
         echo "::set-output name=version::$NEW_VERSION"
+
         git checkout -b bump-version-$NEW_VERSION
     
         echo $NEW_VERSION > VERSION
@@ -57,8 +58,8 @@ jobs:
         # Create a pull request using GitHub CLI
         gh pr create --base main --head bump-version-$NEW_VERSION --title "Bump version to $NEW_VERSION" --body "Automatic version bump to $NEW_VERSION"
 
-    - name: Debug NEW_VERSION
-      run: echo "New Version is $NEW_VERSION"
+    - name: Debug Output Variable
+      run: echo "Output variable should be ${{ steps.bump_version.outputs.version }}"
 
   create_release:
     needs: bump_version
