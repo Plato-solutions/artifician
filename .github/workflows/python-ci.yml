@@ -116,6 +116,8 @@ jobs:
         source "$HOME/miniconda/etc/profile.d/conda.sh"
         conda config --set always_yes yes --set changeps1 no
         conda update -q conda
+    - name: Enable Anaconda Upload
+      run: conda config --set anaconda_upload yes
     - name: Install conda-build
       run: conda install conda-build
     - name: Install pip via conda
