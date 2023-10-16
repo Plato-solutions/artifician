@@ -33,22 +33,25 @@ jobs:
         sudo apt update
         sudo apt install gh
     - name: Bump version and create a pull request
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        
+            
         # Create a new branch
         git checkout -b bump-version
-        
+            
         NEW_VERSION=$(python -c 'version = open("VERSION").read().strip().split("."); version[-1] = str(int(version[-1]) + 1); print(".".join(version))')
         echo $NEW_VERSION > VERSION
-        
+            
         git add VERSION
         git commit -m "Bump version to $NEW_VERSION"
         git push origin bump-version
-        
+            
         # Create a pull request using GitHub CLI
         gh pr create --base main --head bump-version --title "Bump version to $NEW_VERSION" --body "Automatic version bump to $NEW_VERSION"
+
 
   create_release:
     needs: bump_version
