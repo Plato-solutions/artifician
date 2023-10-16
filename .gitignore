@@ -15,6 +15,7 @@ tests/.coverage
 
 # C extensions
 *.so
+.vscode/
 
 # Distribution / packaging
 .Python
