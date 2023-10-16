@@ -34,24 +34,17 @@ jobs:
         sudo apt install gh
     - name: Bump version and create a pull request
       id: bump_version_step
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        NEW_VERSION=$(python -c 'version = open("VERSION").read().strip().split("."); version[-1] = str(int(version[-1]) + 1); print(".".join(version))')
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+        
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-        # Create a new branch with a unique name
-        NEW_VERSION=$(python -c 'version = open("VERSION").read().strip().split("."); version[-1] = str(int(version[-1]) + 1); print(".".join(version))')
-        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-        echo "NEW_VERSION=$NEW_VERSION"  # To make sure it's set correctly
-        echo "::set-output name=version::$NEW_VERSION"
-
         git checkout -b bump-version-$NEW_VERSION
-    
         echo $NEW_VERSION > VERSION
-
-    
         git add VERSION
+        
         git commit -m "Bump version to $NEW_VERSION"
         git push origin bump-version-$NEW_VERSION
     
@@ -64,19 +57,18 @@ jobs:
   create_release:
     needs: bump_version
     runs-on: ubuntu-latest
+    env:
+      TAG_NAME: ${{ needs.bump_version.outputs.new_version }}
     steps:
-    - name: Debug tag_name
-      run: echo "Tag name should be ${{ needs.bump_version.outputs.version }}"
     - name: Create GitHub Release
       uses: actions/create-release@v1
       with:
-        tag_name: ${{ needs.bump_version.outputs.version }}  # Access output variable from bump_version job
-        release_name: Release ${{ needs.bump_version.outputs.version }}
+        tag_name: ${{ env.TAG_NAME }}
+        release_name: Release ${{ env.TAG_NAME }}
         draft: false
         prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
   deploy-pypi:
     needs: create_release
