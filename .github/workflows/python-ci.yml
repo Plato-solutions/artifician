@@ -48,6 +48,7 @@ jobs:
         git checkout -b bump-version-$NEW_VERSION
     
         echo $NEW_VERSION > VERSION
+
     
         git add VERSION
         git commit -m "Bump version to $NEW_VERSION"
@@ -56,12 +57,15 @@ jobs:
         # Create a pull request using GitHub CLI
         gh pr create --base main --head bump-version-$NEW_VERSION --title "Bump version to $NEW_VERSION" --body "Automatic version bump to $NEW_VERSION"
 
-
+    - name: Debug NEW_VERSION
+      run: echo "New Version is $NEW_VERSION"
 
   create_release:
     needs: bump_version
     runs-on: ubuntu-latest
     steps:
+    - name: Debug tag_name
+      run: echo "Tag name should be ${{ needs.bump_version.outputs.version }}"
     - name: Create GitHub Release
       uses: actions/create-release@v1
       with:
