@@ -1,0 +1,171 @@
+from bs4 import Tag
+from typing import List, Union
+
+def get_node_text(node: List[Union[str, Tag]]) -> str:
+    """
+    Extracts text from a given node.
+
+    Args:
+        node (List[Union[str, Tag]]): The node list to extract text from.
+
+    Returns:
+        str: The text content of the node.
+        
+    Raises:
+        TypeError: If the first element in the node list is not a bs4.element.Tag.
+        ValueError: If the node list is empty.
+    """
+    if not node:
+        raise ValueError("Node list cannot be empty.")
+    actual_node = node[0]
+    if not isinstance(actual_node, Tag):
+        raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+    return actual_node.text.strip()
+
+def get_node_attribute(node: List[Union[str, Tag]], attribute: str) -> str:
+    """
+    Retrieves the value of a specified attribute from a given node.
+
+    Args:
+        node (List[Union[str, Tag]]): The node list to get the attribute from.
+        attribute (str): The name of the attribute to retrieve.
+
+    Returns:
+        str: The value of the attribute.
+        
+    Raises:
+        TypeError: If the first element in the node list is not a bs4.element.Tag.
+    """
+    if not node:
+        raise ValueError("Node list cannot be empty.")
+    actual_node = node[0]
+    if not isinstance(actual_node, Tag):
+        raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+    return actual_node.get(attribute, "")
+
+def get_parent_node_text(node: List[Union[str, Tag]]) -> str:
+    """
+    Extracts text from the parent node of a given node.
+
+    Args:
+        node (List[Union[str, Tag]]): The node list to extract parent text from.
+
+    Returns:
+        str: The text content of the parent node.
+        
+    Raises:
+        TypeError: If the first element in the node list is not a bs4.element.Tag.
+    """
+    if not node:
+        raise ValueError("Node list cannot be empty.")
+    actual_node = node[0]
+    if not isinstance(actual_node, Tag):
+        raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+    parent_node = actual_node.find_parent()
+    return parent_node.text.strip() if parent_node else ""
+
+def get_child_node_text(node: List[Union[str, Tag]]) -> str:
+    """
+    Extracts text from the first child node of a given node.
+
+    Args:
+        node (List[Union[str, Tag]]): The node list to extract child text from.
+
+    Returns:
+        str: The text content of the child node.
+        
+    Raises:
+        TypeError: If the first element in the node list is not a bs4.element.Tag.
+    """
+    if not node:
+        raise ValueError("Node list cannot be empty.")
+    actual_node = node[0]
+    if not isinstance(actual_node, Tag):
+        raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+    child_node = actual_node.find_next()
+    return child_node.text.strip() if child_node else ""
+
+def count_child_nodes(node: List[Union[str, Tag]]) -> int:
+    """
+    Counts the number of child nodes for a given node.
+
+    Args:
+        node (List[Union[str, Tag]]): The node list to count children for.
+
+    Returns:
+        int: The number of child nodes.
+        
+    Raises:
+        TypeError: If the first element in the node list is not a bs4.element.Tag.
+    """
+    if not node:
+        raise ValueError("Node list cannot be empty.")
+    actual_node = node[0]
+    if not isinstance(actual_node, Tag):
+        raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+    return len(actual_node.find_all())
+
+def get_sibling_node_text(node: List[Union[str, Tag]]) -> str:
+    """
+    Extracts text from the first sibling node of a given node.
+
+    Args:
+        node (List[Union[str, Tag]]): The node list to extract sibling text from.
+
+    Returns:
+        str: The text content of the sibling node.
+        
+    Raises:
+        TypeError: If the first element in the node list is not a bs4.element.Tag.
+    """
+    if not node:
+        raise ValueError("Node list cannot be empty.")
+    actual_node = node[0]
+    if not isinstance(actual_node, Tag):
+        raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+    sibling_node = actual_node.find_next_sibling()
+    return sibling_node.text.strip() if sibling_node else ""
+
+def get_parent_attribute(node: List[Union[str, Tag]], attribute: str) -> str:
+    """
+    Retrieves the value of a specified attribute from the parent of a given node.
+
+    Args:
+        node (List[Union[str, Tag]]): The node list to get the parent attribute from.
+        attribute (str): The name of the attribute to retrieve.
+
+    Returns:
+        str: The value of the attribute from the parent node.
+        
+    Raises:
+        TypeError: If the first element in the node list is not a bs4.element.Tag.
+    """
+    if not node:
+        raise ValueError("Node list cannot be empty.")
+    actual_node = node[0]
+    if not isinstance(actual_node, Tag):
+        raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+    parent_node = actual_node.find_parent()
+    return parent_node.get(attribute, "") if parent_node else ""
+
+def get_child_attribute(node: List[Union[str, Tag]], attribute: str) -> str:
+    """
+    Retrieves the value of a specified attribute from the first child of a given node.
+
+    Args:
+        node (List[Union[str, Tag]]): The node list to get the child attribute from.
+        attribute (str): The name of the attribute to retrieve.
+
+    Returns:
+        str: The value of the attribute from the child node.
+        
+    Raises:
+        TypeError: If the first element in the node list is not a bs4.element.Tag.
+    """
+    if not node:
+        raise ValueError("Node list cannot be empty.")
+    actual_node = node[0]
+    if not isinstance(actual_node, Tag):
+        raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+    child_node = actual_node.find_next()
+    return child_node.get(attribute, "") if child_node else ""
