@@ -116,8 +116,12 @@ jobs:
         source "$HOME/miniconda/etc/profile.d/conda.sh"
         conda config --set always_yes yes --set changeps1 no
         conda update -q conda
-    - name: Install conda-build  # Add this step
+    - name: Install conda-build
       run: conda install conda-build
+    - name: Install pip via conda
+      run: conda install pip --yes
+    - name: Install Python packages from requirements.txt
+      run: pip install -r requirements.txt
     - name: Build and Publish to Anaconda
       env:
         ANACONDA_USERNAME: ${{ secrets.ANACONDA_USERNAME }}
@@ -126,3 +130,4 @@ jobs:
         conda build .
         anaconda login --user $ANACONDA_USERNAME --password $ANACONDA_PASSWORD
         anaconda upload $HOME/miniconda/conda-bld/**/artifician*.tar.bz2
+
