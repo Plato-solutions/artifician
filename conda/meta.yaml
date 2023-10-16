@@ -21,5 +21,5 @@ requirements:
   run:
     - python >=3.6
     - pandas
-    - conda-forge::rx
-    - anaconda::beautifulsoup4
+    - rx
+    - beautifulsoup4
