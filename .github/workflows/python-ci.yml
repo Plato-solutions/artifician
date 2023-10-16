@@ -33,13 +33,16 @@ jobs:
         sudo apt update
         sudo apt install gh
     - name: Bump version and create a pull request
-      id: bump_version_step
+      id: bump_version
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        NEW_VERSION=$(python -c 'version = open("VERSION").read().strip().split("."); version[-1] = str(int(version[-1]) + 1); print(".".join(version))')
-        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-        
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+
+        NEW_VERSION=$(python -c 'version = open("VERSION").read().strip().split("."); version[-1] = str(int(version[-1]) + 1); print(".".join(version))')
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+        echo "NEW_VERSION=$NEW_VERSION"  # To make sure it's set correctly
         
         git checkout -b bump-version-$NEW_VERSION
         echo $NEW_VERSION > VERSION
