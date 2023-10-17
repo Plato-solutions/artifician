@@ -128,22 +128,12 @@ jobs:
       run: conda install pip --yes
     - name: Install Python packages from requirements.txt
       run: pip install -r requirements.txt
-    - name: add forge channel
+    - name: Add forge channel
       run: conda config --add channels conda-forge
-    - name: Debug TAG_NAME and meta.yaml content
-      run: |
-        echo "TAG_NAME=${{ env.TAG_NAME }}"
-        cat conda/meta.yaml
-    - name: Install yq
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y jq
-        pip install yq
-  # Update version in meta.yaml using yq
+    - name: Install yq via pip
+      run: pip install yq
     - name: Update version in meta.yaml
-      run: |
-        yq eval '.package.version = strenv(TAG_NAME)' conda/meta.yaml > conda/temp_meta.yaml
-        mv conda/temp_meta.yaml conda/meta.yaml
+      run: yq -y ".package.version = \"${{ env.TAG_NAME }}\"" conda/meta.yaml > conda/temp_meta.yaml && mv conda/temp_meta.yaml conda/meta.yaml
     - name: Build and Publish to Anaconda
       env:
         ANACONDA_USERNAME: ${{ secrets.ANACONDA_USERNAME }}
@@ -151,4 +141,4 @@ jobs:
       run: |
         conda build .
         anaconda login --user $ANACONDA_USERNAME --password $ANACONDA_PASSWORD
-        anaconda upload $HOME/miniconda/conda-bld/**/artifician*.tar.bz2
+        anaconda upload $HOME/miniconda/conda-bld/**/artifician*.tar.bz2  
