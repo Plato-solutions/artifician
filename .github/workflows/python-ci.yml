@@ -66,8 +66,6 @@ jobs:
   create_release:
     needs: bump_version
     runs-on: ubuntu-latest
-    env:
-      TAG_NAME: ${{ needs.bump_version.outputs.new_version }}
     steps:
     - name: Download new_version artifact
       uses: actions/download-artifact@v2
@@ -116,6 +114,12 @@ jobs:
         source "$HOME/miniconda/etc/profile.d/conda.sh"
         conda config --set always_yes yes --set changeps1 no
         conda update -q conda
+    - name: Download new_version artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: new_version
+    - name: Set TAG_NAME from artifact
+      run: echo "TAG_NAME=$(cat new_version.txt)" >> $GITHUB_ENV
     - name: Enable Anaconda Upload
       run: conda config --set anaconda_upload yes
     - name: Install conda-build
@@ -124,10 +128,20 @@ jobs:
       run: conda install pip --yes
     - name: Install Python packages from requirements.txt
       run: pip install -r requirements.txt
-    - name: add froge channel
+    - name: add forge channel
       run: conda config --add channels conda-forge
-    - name: add anaconda channel
-      run: conda config --add channels anaconda
+    - name: Debug TAG_NAME and meta.yaml content
+      run: |
+        echo "TAG_NAME=${{ env.TAG_NAME }}"
+        cat conda/meta.yaml
+    - name: Install yq
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq
+        pip install yq
+  # Update version in meta.yaml using yq
+    - name: Update version in meta.yaml
+      run: yq eval -i '.package.version = strenv(TAG_NAME)' conda/meta.yaml
     - name: Build and Publish to Anaconda
       env:
         ANACONDA_USERNAME: ${{ secrets.ANACONDA_USERNAME }}
