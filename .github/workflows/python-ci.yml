@@ -141,7 +141,9 @@ jobs:
         pip install yq
   # Update version in meta.yaml using yq
     - name: Update version in meta.yaml
-      run: yq eval -i -Y '.package.version = strenv(TAG_NAME)' conda/meta.yaml
+      run: |
+        yq eval '.package.version = strenv(TAG_NAME)' conda/meta.yaml > conda/temp_meta.yaml
+        mv conda/temp_meta.yaml conda/meta.yaml
     - name: Build and Publish to Anaconda
       env:
         ANACONDA_USERNAME: ${{ secrets.ANACONDA_USERNAME }}
