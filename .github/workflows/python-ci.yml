@@ -65,6 +65,7 @@ jobs:
       run: |
         python setup.py sdist bdist_wheel  # This should work now
         twine upload dist/* -u $PYPI_USERNAME -p $PYPI_PASSWORD
+        
   # TODO: fix the deploy conda
   # deploy-conda:
   #   needs: create_release
