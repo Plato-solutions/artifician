@@ -5,6 +5,8 @@
 ![CI/CD](https://github.com/Plato-solutions/artifician/actions/workflows/python-ci.yml/badge.svg?branch=main)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Plato-solutions/artifician)
 [![PyPI version](https://badge.fury.io/py/artifician.svg)](https://pypi.org/project/artifician/)
+[![GitBook](https://img.shields.io/badge/docs-GitBook-blue)](https://plato-solutions.gitbook.io/artifician/)
+
 
   
 <!-- PROJECT LOGO -->  
