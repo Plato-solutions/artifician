@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Defining Custom Extractors &mdash; artifician Library 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            artifician Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started with Artifician</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_concepts.html">Advanced Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">artifician Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Defining Custom Extractors</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/define_extractors.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="defining-custom-extractors">
+<h1>Defining Custom Extractors<a class="headerlink" href="#defining-custom-extractors" title="Permalink to this headline"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>Extractors are user-defined functions that serve as the cornerstone for feature extraction in Artifician. This document provides an in-depth guide on how to create your own custom extractors.</p>
+</section>
+<section id="why-custom-extractors">
+<h2>Why Custom Extractors?<a class="headerlink" href="#why-custom-extractors" title="Permalink to this headline"></a></h2>
+<p>There might be specific features you need to extract from your data that the pre-defined extractors do not cover. In such cases, custom extractors come in handy.</p>
+</section>
+<section id="how-extractors-work">
+<h2>How Extractors Work<a class="headerlink" href="#how-extractors-work" title="Permalink to this headline"></a></h2>
+<p>Extractors operate by taking a sample of raw data and extracting specific features from it. These extracted features are then passed on to the <cite>FeatureDefinition</cite> for further processing.</p>
+</section>
+<section id="example-of-a-simple-extractor">
+<h2>Example of a Simple Extractor<a class="headerlink" href="#example-of-a-simple-extractor" title="Permalink to this headline"></a></h2>
+<p>Here is an example that extracts domain names from URLs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_domain_name</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+    <span class="n">domain_name</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;//&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">domain_name</span>
+</pre></div>
+</div>
+</section>
+<section id="integrating-custom-extractors">
+<h2>Integrating Custom Extractors<a class="headerlink" href="#integrating-custom-extractors" title="Permalink to this headline"></a></h2>
+<p>To use your custom extractor, pass it as an argument when initializing a <cite>FeatureDefinition</cite> object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">url_domain</span> <span class="o">=</span> <span class="n">FeatureDefinition</span><span class="p">(</span><span class="n">extract_domain_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-usage">
+<h2>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline"></a></h2>
+<p>If your feature extraction is more complex and involves multiple steps, you can also create a class-based extractor. This allows for more modularity and reusability.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AdvancedExtractor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param1</span> <span class="o">=</span> <span class="n">param1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param2</span> <span class="o">=</span> <span class="n">param2</span>
+
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+        <span class="c1"># Complex extraction logic here</span>
+        <span class="k">return</span> <span class="n">extracted_feature</span>
+
+<span class="n">advanced_extractor</span> <span class="o">=</span> <span class="n">AdvancedExtractor</span><span class="p">(</span><span class="n">param1_value</span><span class="p">,</span> <span class="n">param2_value</span><span class="p">)</span>
+<span class="n">advanced_feature</span> <span class="o">=</span> <span class="n">FeatureDefinition</span><span class="p">(</span><span class="n">advanced_extractor</span><span class="o">.</span><span class="n">extract</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline"></a></h2>
+<p>Custom extractors offer a flexible way to handle feature extraction specific to your needs. They seamlessly integrate with the existing components of Artifician, allowing for a cohesive and streamlined feature extraction process.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, plato solutions.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

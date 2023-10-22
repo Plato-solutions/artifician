@@ -1,29 +1,28 @@
 Introduction
 =============
 
-Preparing dataset for AI (Artificial Intelligence) models is a difficult and a time consuming job. 
-A typical ML engineer spends days, weeks and sometimes months preparing the dataset. With the help 
-of Artifician library developers will be able to prepare dataset in very less time.
+"Turn your data preparation nightmares into a dream."
+-----------------------------------------------------
+In the world of Artificial Intelligence and Machine Learning, data is the new oil. However, this data often comes in raw, unstructured formats that need extensive cleaning and transformation to be usable. This preprocessing phase can be a grueling task, taking up to 80% of a data scientist's or ML engineer's time. 
 
-Artifician is a event driven framework developed to simplify and speed up the process of preparation
-of the datasets for AI models. Artifician contains predefined set of processors for converting unstructured
-data into structured data. You can use them or define your own if you don't find the one that fulfill your needs.
-The ultimate aim is to have as many as processors that developers will no longer need to define any new processors.
+Artifician aims to revolutionize this crucial yet tedious step. It is an event-driven framework specifically designed to simplify and speed up the process of dataset preparation for AI and ML models. Whether you're dealing with text, numbers, or more complex data types, Artifician offers a streamlined, efficient way to get your data model-ready.
 
 Key features of Artifician:
 
-- Saves up to 50% of time
-- Less lines of code
-- Makes code more readable and easy to manage
-- CPU Concurrency
+Why Artifician?
+---------------
+- **Time-Saving**: Reduces dataset preparation time by up to 50%, freeing you to focus on model building and fine-tuning.
+- **Efficient Code**: Minimizes the lines of code you need to write, making your development process leaner and faster.
+- **Readability and Manageability**: Ensures that your code is not just functional but also clean, well-organized, and easy to understand, even for those who didn't write it.
+- **CPU Concurrency**: Fully utilizes your CPU capabilities to perform data preparation tasks in parallel, significantly speeding up the process.
 
 ------------------------------------------------------------------------------------------
 
 Simple Example
 ---------------
 
-Let's take a simple example to understand the impact of the Artifician.
-Here will take urls as the raw data and try to extract the directory path of the url 
+Let's take a simple example to understand the impact of Artifician.
+Here we will take URLs as the raw data and try to extract the directory path of the URL
 and convert it to numerical format while maintaining the sequential information.
 
 Without Artifician
@@ -71,9 +70,7 @@ Without Artifician
 
     print(dataset)
 
-Here you can notice how each and every function is tightly coupled to each other and a single change will
-lead to changes in several other places. This code is just for preparing a single feature. 
-Just imagine the level of complexity when writing code for preparing tens and hundreds of features.
+As you can notice, each function in the above code is tightly coupled, making it prone to errors and difficult to manage. Now, let's see how Artifician simplifies this.es.
 
 Now let's prepare the same dataset using Artifician
 
@@ -110,9 +107,7 @@ Using Artifician
     print(prepared_data)
 
 
-artifician library decouples all the entities and hence makes it very easy to manage.
-You can add, remove and update features very easily without worrying about anything else.
-Here we used normalizer and mapper which are inbuilt processors in artifician library.
+Artifician library decouples all the entities, making your codebase much easier to manage. You can add, remove, and update features effortlessly, without affecting other parts of your code.
 
 Output
 -------

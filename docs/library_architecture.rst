@@ -1,46 +1,27 @@
 Library Architecture
 =====================
 
-
-This section helps you to understand the core components of the Artifician.
-
------------------------------------------------------------------------------------------------------------
-
-The Architecture diagram represents the relationship between different components of the Artifician.
+This section offers a deep dive into the core components that constitute the Artifician library, explaining their roles, functionalities, and how they interact with each other.
 
 .. image:: _static/artifician_library.png
     :width: 800
 
------------------------------------------------------------------------------------------------------------
-
 Events
--------
-    Events are the part of the life cycle of the program. The entity which creates and 
-    triggers events is called as publisher, and entity which listens (observes) to those is 
-    called as an observer. Events makes whole systems decoupled and very flexible.
-    Events are nothing but the python functions. 
+------
+Events serve as the backbone of Artifician's event-driven architecture. They provide the hooks that allow different components to communicate in a decoupled manner. In this system, the entity that triggers an event is known as the "publisher," and the entity that listens to the event is the "observer." Essentially, events are Python functions that act as communication channels between different parts of your application.
 
 Dataset
 -------
-    Dataset is responsible for storing and maintaining the prepared data.
-    Dataset has events which can be observed by any of the observer. 
-    Dataset contains the `pandas.DataFrame <https://pandas.pydata.org/>`_ object to store the
-    prepared data.
+The Dataset is more than just a storage unit; it serves as the core structure that holds and manages the prepared data. It emits events that can be observed by other components like Feature Definitions and Processors. Internally, the Dataset utilizes a `pandas.DataFrame <https://pandas.pydata.org/>`_ object to hold the prepared data, offering a familiar interface for data manipulation and analysis.
 
 Feature Definition
 ------------------
-    Feature Definition is responsible for preparing feature data.
-    Feature Definition extract the Feature value from the sample received, using custom
-    extractor function and then the feature value is processed by the processors if any.
-    Feature Definition can act as a both publisher and the observer. 
-    It can create events of its own, as well as subscribe to events created by publishers.
+Feature Definitions are the workhorses of the Artifician library. They are responsible for extracting specific features from raw data using an "extractor" function. This extractor is a custom function that you define to pick out the data you are interested in. Feature Definitions act as both publishers and observers: they can emit their events and also listen to events emitted by other publishers, including the Dataset.
 
 Processors
------------
-    Processor is responsible for processing data. Processor subscribes to the events created by publishers.
+----------
+Processors play a crucial role in shaping the data into a usable format. They can perform a wide range of operations, from normalization to more complex feature engineering tasks. Processors listen to events triggered by publishers like Feature Definitions and act upon the data accordingly. They are extendable, allowing you to define custom processors that fit your specific needs.
 
-RxPY
------
-    For publishing and subscribing events we are using a `RxPY <https://rxpy.readthedocs.io/en/latest/>`_  library
-    which is a set of libraries for composing asynchronous and event-based programs using observable sequences 
-    and pipable query operators in Python. 
+Extractors
+----------
+Extractors are user-defined functions that you pass into the Feature Definition component. Their role is to extract specific features from a given sample of raw data. Think of them as the first line of data transformation, essentially turning unstructured or semi-structured data into something that can be processed further down the pipeline. They serve as the bridge between the raw data and the Feature Definitions, allowing you to tailor the data extraction process to your specific needs.

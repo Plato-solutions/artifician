@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'artifician Library'
-copyright = '2022, Abhijeet Gandhi'
+copyright = '2023, plato solutions'
 author = 'Abhijeet Gandhi'
 
 # The full version, including alpha/beta/rc tags
@@ -50,3 +50,15 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+def remove_license(app, what, name, obj, options, lines):
+    if what == "module":
+        # Identify where the actual docstring starts within the lines.
+        # Assuming it starts after the "License" line.
+        for index, line in enumerate(lines):
+            if line.strip() == "See the License for the specific language governing permissions and":
+                del lines[:index + 2]
+                break
+
+def setup(app):
+    app.connect('autodoc-process-docstring', remove_license)

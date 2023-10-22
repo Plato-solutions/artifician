@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Advanced Concepts &mdash; artifician Library 0.1 documentation</title>
@@ -14,13 +14,11 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Defining new processor" href="define_processor.html" />
+    <link rel="next" title="Defining Custom Extractors" href="define_extractors.html" />
     <link rel="prev" title="Quick Start" href="quick_start.html" /> 
 </head>
 
@@ -45,14 +43,18 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started with Artifician</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Concepts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="define_processor.html">Defining new processor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_architecture.html">Library Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_extractors.html">Defining Custom Extractors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_processor.html">Defining Custom Processors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_architecture.html">Library Architecture</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Reference</a></li>
 </ul>
 
         </div>
@@ -80,20 +82,44 @@
            <div itemprop="articleBody">
              
   <section id="advanced-concepts">
-<h1>Advanced Concepts<a class="headerlink" href="#advanced-concepts" title="Permalink to this heading"></a></h1>
+<h1>Advanced Concepts<a class="headerlink" href="#advanced-concepts" title="Permalink to this headline"></a></h1>
+<p>The Artifician library is designed to be easy to use for simple tasks, yet flexible enough for complex data preparation workflows. In this section, we will delve into the more advanced features and architectural choices that power the Artifician library.</p>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="define_processor.html">Defining new processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="define_extractors.html">Defining Custom Extractors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_extractors.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_extractors.html#why-custom-extractors">Why Custom Extractors?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_extractors.html#how-extractors-work">How Extractors Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_extractors.html#example-of-a-simple-extractor">Example of a Simple Extractor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_extractors.html#integrating-custom-extractors">Integrating Custom Extractors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_extractors.html#advanced-usage">Advanced Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_extractors.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="define_processor.html">Defining Custom Processors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_processor.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_processor.html#why-custom-processors">Why Custom Processors?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_processor.html#how-processors-work">How Processors Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_processor.html#example-of-a-simple-processor">Example of a Simple Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_processor.html#integrating-custom-processors">Integrating Custom Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_processor.html#advanced-usage">Advanced Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="define_processor.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="library_architecture.html">Library Architecture</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="library_architecture.html#events">Events</a></li>
 <li class="toctree-l2"><a class="reference internal" href="library_architecture.html#dataset">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="library_architecture.html#feature-definition">Feature Definition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="library_architecture.html#processors">Processors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_architecture.html#rxpy">RxPY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_architecture.html#extractors">Extractors</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<p>Whether you’re looking to extend the library’s capabilities or trying to get a deeper understanding of how things work, these advanced topics will provide you with the knowledge you need.</p>
+</section>
 </section>
 
 
@@ -101,13 +127,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="quick_start.html" class="btn btn-neutral float-left" title="Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="define_processor.html" class="btn btn-neutral float-right" title="Defining new processor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="define_extractors.html" class="btn btn-neutral float-right" title="Defining Custom Extractors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Abhijeet Gandhi.</p>
+    <p>&#169; Copyright 2023, plato solutions.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
