@@ -1,127 +1,132 @@
 # Introduction
 
-Preparing dataset for AI (Artificial Intelligence) models is a difficult and a time-consuming job.
-A typical ML engineer spends days, weeks and sometimes months preparing the dataset. With the help
-of Artifician library developers will be able to prepare dataset in very less time.
+## \"Turn your data preparation nightmares into a dream.\"
 
-Artifician is an event driven framework developed to simplify and speed up the process of preparation
-of the datasets for AI models. Artifician contains predefined set of processors for converting unstructured
-data into structured data. You can use them or define your own if you don’t find the one that fulfill your needs.
-The ultimate aim is to have as many as processors that developers will no longer need to define any new processors.
+In the world of Artificial Intelligence and Machine Learning, data is
+the new oil. However, this data often comes in raw, unstructured formats
+that need extensive cleaning and transformation to be usable. This
+preprocessing phase can be a grueling task, taking up to 80% of a data
+scientist\'s or ML engineer\'s time.
+
+Artifician aims to revolutionize this crucial yet tedious step. It is an
+event-driven framework specifically designed to simplify and speed up
+the process of dataset preparation for AI and ML models. Whether you\'re
+dealing with text, numbers, or more complex data types, Artifician
+offers a streamlined, efficient way to get your data model-ready.
 
 Key features of Artifician:
 
+## Why Artifician?
 
-* Saves up to 50% of time
+-   **Time-Saving**: Reduces dataset preparation time by up to 50%,
+    freeing you to focus on model building and fine-tuning.
+-   **Efficient Code**: Minimizes the lines of code you need to write,
+    making your development process leaner and faster.
+-   **Readability and Manageability**: Ensures that your code is not
+    just functional but also clean, well-organized, and easy to
+    understand, even for those who didn\'t write it.
+-   **CPU Concurrency**: Fully utilizes your CPU capabilities to perform
+    data preparation tasks in parallel, significantly speeding up the
+    process.
 
-
-* Fewer lines of code
-
-
-* Makes code more readable and easy to manage
-
-
-* CPU Concurrency
-
-
----
+------------------------------------------------------------------------
 
 ## Simple Example
 
-Let’s take a simple example to understand the impact of the Artifician.
-Here will take urls as the raw data and try to extract the directory path of the url
-and convert it to numerical format while maintaining the sequential information.
+Let\'s take a simple example to understand the impact of Artifician.
+Here we will take URLs as the raw data and try to extract the directory
+path of the URL and convert it to numerical format while maintaining the
+sequential information.
 
 ## Without Artifician
 
-```default
-sample_data = ['https://www.example.com/path/path1/path2', 'https://www.example.com/path/path1/path2/path3']
-path_map = []
+    sample_data = ['https://www.example.com/path/path1/path2', 'https://www.example.com/path/path1/path2/path3']
+    path_map = []
 
-def extract_path(url):
+    def extract_path(url):
 
-    url_path = urlparse(url).path
+        url_path = urlparse(url).path
 
-    if url_path.endswith('html'):
-        url_path = '/'.join(url_path.split('/')[:-1])
+        if url_path.endswith('html'):
+            url_path = '/'.join(url_path.split('/')[:-1])
 
-    return url_path
+        return url_path
 
-def normalize_path(url_path, delimiter):
+    def normalize_path(url_path, delimiter):
 
-    url_path = re.split(f'{delimiter}', url_path)[1:]
+        url_path = re.split(f'{delimiter}', url_path)[1:]
 
-    return url_path
+        return url_path
 
-def map_path_values(url_path):
+    def map_path_values(url_path):
 
-    path_values_map = []
+        path_values_map = []
 
-    for path in url_path:
-        if path not in path_map:
-            path_map.append(path)
+        for path in url_path:
+            if path not in path_map:
+                path_map.append(path)
 
-        path_values_map.append(path_map.index(path))
+            path_values_map.append(path_map.index(path))
 
-    return path_values_map
+        return path_values_map
 
-dataset = pd.DataFrame()
+    dataset = pd.DataFrame()
 
-for sample in sample_data:
-    path = extract_path(sample)
-    normalized_path = normalize_path(path, '/')
-    mapped_path = map_path_values(normalized_path)
-    sample_data = [sample, mapped_path]
-    dataset = dataset.append(pd.Series(sample_data), ignore_index=True)
+    for sample in sample_data:
+        path = extract_path(sample)
+        normalized_path = normalize_path(path, '/')
+        mapped_path = map_path_values(normalized_path)
+        sample_data = [sample, mapped_path]
+        dataset = dataset.append(pd.Series(sample_data), ignore_index=True)
 
-print(dataset)
-```
+    print(dataset)
 
-Here you can notice how each and every function is tightly coupled to each other and a single change will
-lead to changes in several other places. This code is just for preparing a single feature.
-Just imagine the level of complexity when writing code for preparing tens and hundreds of features.
+As you can notice, each function in the above code is tightly coupled,
+making it prone to errors and difficult to manage. Now, let\'s see how
+Artifician simplifies this.es.
 
-Now let’s prepare the same dataset using Artifician
+Now let\'s prepare the same dataset using Artifician
 
 ## Using Artifician
 
-```default
-from urllib.parse import urlparse
-from artifician import *
-from artifician.Processors import *
+    from urllib.parse import urlparse
+    from artifician import *
+    from artifician.Processors import *
 
 
-def extract_path(url):
-    url_path = urlparse(url).path
+    def extract_path(url):
+        url_path = urlparse(url).path
 
-    if url_path.endswith('html'):
-        url_path = '/'.join(url_path.split('/')[:-1])
+        if url_path.endswith('html'):
+            url_path = '/'.join(url_path.split('/')[:-1])
 
-    return url_path
+        return url_path
 
 
-sample_data = ['https://www.example.com/path/path1/path2', 'https://www.example.com/path/path1/path2/path3']
+    sample_data = ['https://www.example.com/path/path1/path2', 'https://www.example.com/path/path1/path2/path3']
 
-dataset = Dataset.Dataset()
-url_domain = FeatureDefinition.FeatureDefinition(extract_path)
-normalizer = Normalizer(PathsNormalizer(), delimiter={'delimiter': ["/"]})
-mapper = Mapper.Mapper(Mapper.FeatureMap())
+    dataset = Dataset.Dataset()
+    url_domain = FeatureDefinition.FeatureDefinition(extract_path)
+    normalizer = Normalizer(PathsNormalizer(), delimiter={'delimiter': ["/"]})
+    mapper = Mapper.Mapper(Mapper.FeatureMap())
 
-normalizer.subscribe(url_domain)
-mapper.subscribe(url_domain)
-url_domain.subscribe(dataset)
+    normalizer.subscribe(url_domain)
+    mapper.subscribe(url_domain)
+    url_domain.subscribe(dataset)
 
-prepared_data = dataset.add_samples(sample_data)
-print(prepared_data)
-```
+    prepared_data = dataset.add_samples(sample_data)
+    print(prepared_data)
 
-Artifician library decouples all the entities and hence makes it very easy to manage.
-You can add, remove and update features very easily without worrying about anything else.
-Here we used normalizer and mapper which are inbuilt processors in artifician library.
+Artifician library decouples all the entities, making your codebase much
+easier to manage. You can add, remove, and update features effortlessly,
+without affecting other parts of your code.
 
 ## Output
 
-| index  | 0  | 1            | 
-|---     | -- | ------------ |
-| 0      | [https://www.example.com/path/path1/path2](https://www.example.com/path/path1/path2) | [0, 1, 2]    |
-| 1      | [https://www.example.com/path/path1/path2/path3](https://www.example.com/path/path1/path2/path3) | [0, 1, 2, 3] |
+  ------------------------------------------------------------------------
+        0                                                  1
+  ----- -------------------------------------------------- ---------------
+  0     <https://www.example.com/path/path1/path2>         \[0, 1, 2\]
+
+  1     <https://www.example.com/path/path1/path2/path3>   \[0, 1, 2, 3\]
+  ------------------------------------------------------------------------
