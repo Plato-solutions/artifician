@@ -12,7 +12,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/Plato-solutions/artifician",
     author="Abhijeet Gandhi",
-    author_email="abhijeet.gandhi@platoanalytics.com",
+    author_email="abhijeet@platoanalytics.com",
     license="Apache-2.0",
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -21,8 +21,9 @@ setup(
     packages=find_packages(),
     python_requires=">=3.6",
     install_requires=[
-        "pandas>=1.4.2",
+        "pandas",
         "rx>=3.2.0",
+        "beautifulsoup4",
     ],
     project_urls={
         'Documentation': "https://plato-solutions.gitbook.io/artifician/",
