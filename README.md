@@ -7,7 +7,7 @@
 [![PyPI version](https://badge.fury.io/py/artifician.svg)](https://pypi.org/project/artifician/)
 [![GitBook](https://img.shields.io/badge/docs-GitBook-blue)](https://plato-solutions.gitbook.io/artifician/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
+[![Conda](https://anaconda.org/plato_solutions/artifician/badges/version.svg)](https://anaconda.org/plato_solutions/artifician)
 
   
 <!-- PROJECT LOGO -->  
