@@ -36,6 +36,13 @@ jobs:
     - name: Read VERSION file
       id: version
       run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV
+    - name: Generate new_version artifact  # Add this step
+      run: echo "${{ env.VERSION }}" > new_version.txt
+    - name: Upload new_version artifact  # And this step
+      uses: actions/upload-artifact@v2
+      with:
+        name: new_version
+        path: new_version.txt
     - name: Create GitHub Release
       uses: actions/create-release@v1
       with:
@@ -89,7 +96,7 @@ jobs:
     - name: Install conda-build
       run: conda install conda-build
     - name: Install pip via conda
-      run: conda install pip --yes
+      run: pip install -r requirements.txt
     - name: Add forge channel
       run: conda config --add channels conda-forge
     - name: Install yq via pip
