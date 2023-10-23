@@ -2,32 +2,21 @@
 
 ## Introduction
 
-In Artifician, processors play a crucial role in transforming raw data
-into features that can be used by machine learning models. While the
-library offers a wide variety of built-in processors, there are
-scenarios where you may need to define your own. This guide walks you
-through that process.
+In Artifician, processors play a crucial role in transforming raw data into features that can be used by machine learning models. While the library offers a wide variety of built-in processors, there are scenarios where you may need to define your own. This guide walks you through that process.
 
 ## Why Custom Processors?
 
-Built-in processors cover a broad range of common use-cases, but they
-can\'t cater to every specific need. Custom processors allow you to
-define your own logic for data transformation, giving you the
-flexibility to handle any unique requirements your project may have.
+Built-in processors cover a broad range of common use-cases, but they can’t cater to every specific need. Custom processors allow you to define your own logic for data transformation, giving you the flexibility to handle any unique requirements your project may have.
 
 ## How Processors Work
 
-A processor subscribes to a publisher (usually a
-[FeatureDefinition]{.title-ref} or [Dataset]{.title-ref} object) and
-listens for specific events. When the event is triggered, the
-processor\'s [process]{.title-ref} method is called, which then applies
-your custom logic to the feature data.
+A processor subscribes to a publisher (usually a FeatureDefinition or Dataset object) and listens for specific events. When the event is triggered, the processor’s process method is called, which then applies your custom logic to the feature data.
 
 ## Example of a Simple Processor
 
-Here\'s a simple example that doubles the input value.
+Here’s a simple example that doubles the input value.
 
-``` {.python}
+```python
 from . import Processor
 
 class DoubleValueProcessor(Processor.processor):
@@ -41,23 +30,17 @@ class DoubleValueProcessor(Processor.processor):
 
 ## Integrating Custom Processors
 
-After defining a custom processor, you can easily integrate it into your
-data pipeline as you would with any built-in processor.
+After defining a custom processor, you can easily integrate it into your data pipeline as you would with any built-in processor.
 
-``` {.python}
+```python
 my_custom_processor = DoubleValueProcessor()
 my_custom_processor.subscribe(my_feature_definition)
 ```
 
 ## Advanced Usage
 
-For more advanced scenarios, you can make your processor stateful, make
-use of the [pool_scheduler]{.title-ref} for parallel processing, or even
-chain multiple processors together. The possibilities are limitless.
+For more advanced scenarios, you can make your processor stateful, make use of the pool_scheduler for parallel processing, or even chain multiple processors together. The possibilities are limitless.
 
 ## Conclusion
 
-Custom processors provide the flexibility to handle any data
-transformation logic your project requires. They can be as simple or as
-complex as needed, and seamlessly integrate into the Artifician
-framework.
+Custom processors provide the flexibility to handle any data transformation logic your project requires. They can be as simple or as complex as needed, and seamlessly integrate into the Artifician framework.
