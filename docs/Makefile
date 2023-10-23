@@ -18,3 +18,12 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+MARKDOWN_DIR = $(BUILDDIR)/markdown
+
+# New target to convert RST to MD
+convert-rst-to-md:
+	mkdir -p $(MARKDOWN_DIR)
+	for file in $(shell find . -maxdepth 1 -name '*.rst'); do \
+		pandoc $$file -f rst -t markdown -o $(MARKDOWN_DIR)/$${file%.rst}.md; \
+	done
