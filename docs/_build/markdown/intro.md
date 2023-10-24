@@ -6,9 +6,7 @@ In the world of Artificial Intelligence and Machine Learning, data is the new oi
 
 Artifician aims to revolutionize this crucial yet tedious step. It is an event-driven framework specifically designed to simplify and speed up the process of dataset preparation for AI and ML models. Whether you’re dealing with text, numbers, or more complex data types, Artifician offers a streamlined, efficient way to get your data model-ready.
 
-Key features of Artifician:
-
-## Why Artifician?
+## Key features of Artifician ?
 
 - **Time-Saving**: Reduces dataset preparation time by up to 50%, freeing you to focus on model building and fine-tuning.
 - **Efficient Code**: Minimizes the lines of code you need to write, making your development process leaner and faster.
