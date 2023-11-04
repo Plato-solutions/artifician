@@ -24,15 +24,21 @@ class Mapper(processor.Processor):
         map_key_values (bool): True ---> Map both key and value, False ---> map only keys
     """
 
-    def __init__(self, feature_map, map_key_values=False):
+    def __init__(self, feature_map, subscribe_to = None, map_key_values=False):
         """initialise Mapper by setting up the feature map
 
         Args:
             feature_map (FeatureMap): instance of feature_map
+
             map_key_values (Boolean):  True = map both the key and values, False = map only values
         """
+        if subscribe_to is None: 
+            raise ValueError("Mapper must be subscribed to atleast one publisher")
+        for publisher in subscribe_to:
+            self.subscribe(publisher)
         self.feature_map = feature_map
         self.map_key_values = map_key_values
+
 
     def process(self, publisher, feature_value):
         """update the feature value of the publisher by mapping features value to int

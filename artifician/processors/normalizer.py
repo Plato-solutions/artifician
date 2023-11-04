@@ -26,15 +26,20 @@ class Normalizer(processor.Processor):
         delimiter (dictionary): delimiter for splitting the string
     """
 
-    def __init__(self, strategy=None, delimiter=None):
+    def __init__(self, strategy=None, subscribe_to = None, delimiter=None):
         """Initialize the Normalizer by setting up the normalizer strategy and the delimiter
 
         Args:
             strategy (NormalizerStrategy): NormalizerStrategy instance which normalizes string
             delimiter (dictionary):  delimiter for splitting the string
         """
+        if not subscribe_to:
+            raise ValueError("normalizer must be subscribed to at least one publisher")
+        for publisher in subscribe_to:
+            self.subscribe(publisher)
         self.strategy = strategy
         self.delimiter = delimiter
+
 
     def process(self, publisher, feature_raw):
         """Normalize the feature_raw value
@@ -91,7 +96,9 @@ class PropertiesNormalizer(NormalizerStrategy):
         Return:
             feature_normalized (list):  list of tuple of normalized feature raw
         """
-
+        if delimiter is None:
+            Warning("delimiter is not provided. default delimiter ' ' is used")
+            delimiter = {"delimiter": " "}  # default delimiter
         feature_raw_values = re.split(f'{delimiter["delimiter"]}', feature_raw)
         feature_normalized = [(value, key) for key, value in enumerate(feature_raw_values)]
 
@@ -132,7 +139,9 @@ class PathsNormalizer(NormalizerStrategy):
         Return:
             feature_normalized (list): list of tuple of normalized feature text values
         """
-
+        if delimiter is None:
+            Warning("delimiter is not provided. default delimiter '/' is used")
+            delimiter = {"delimiter": "/"} 
         feature_raw_values = re.split(f'{delimiter["delimiter"]}', feature_raw)[1:]
         path_values = self.get_path_values(feature_raw_values, delimiter['delimiter'])
         feature_normalized = [(value, key) for key, value in enumerate(path_values)]
@@ -177,7 +186,9 @@ class KeyValuesNormalizer(NormalizerStrategy):
         Return:
             feature_normalized (list): list of tuple of normalized feature text values
         """
-
+        if delimiter is None:
+            Warning("delimiter is not provided. default delimiter '&' and assignment operator '=' is used")
+            delimiter = {"delimiter": "&", "assignment": "="}
         key_values = re.split(f'{delimiter["delimiter"]}', feature_raw)
         feature_normalized = self.normalize_key_values(key_values, delimiter['assignment'])
 
