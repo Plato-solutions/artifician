@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 """
-import pandas
+import pandas as pd
 from rx.subject import Subject
 
 
@@ -34,7 +34,7 @@ class Dataset:
 
         self.features_sample = None
         self.cached = {}
-        self.datastore = pandas.DataFrame()
+        self.datastore = pd.DataFrame()
         self.PREPARE_DATASET = self.add_samples
         self.POST_PROCESS = self.post_process
 
@@ -58,9 +58,9 @@ class Dataset:
                 self.cached[self.add_samples].on_next(sample)
                 sample_data.append(self.features_sample)
         except KeyError:
-            print("No module is listening to dataset")
+            print("No module has subscribed to dataset")
 
-        self.datastore = pandas.DataFrame(sample_data)
+        self.datastore = pd.DataFrame(sample_data)
 
         return self.datastore
 
