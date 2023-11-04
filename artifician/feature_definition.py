@@ -30,13 +30,18 @@ class FeatureDefinition:
         extractor_parameters (*args): parameters for extractor function
     """
 
-    def __init__(self, extractor=lambda sample: sample, *extractor_parameters):
+    def __init__(self, extractor=lambda sample: sample, subscribe_to = None, *extractor_parameters):
+        if not subscribe_to:
+            raise ValueError("feature definition must be subscribed to at least one publisher")
+        for publisher in subscribe_to:
+            self.subscribe(publisher)
         self.value = None
         self.cached = {}
         self.extractor = extractor
         self.extractor_parameters = extractor_parameters
         self.EVENT_PROCESSED = self.process
         self.MAP_VALUES = self.map
+        
 
     def process(self, publisher, sample):
         """process the sample to build feature value
