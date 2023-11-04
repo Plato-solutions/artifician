@@ -32,9 +32,12 @@ def get_node_text(node: List[Union[str, Tag]]) -> str:
     """
     if not node:
         raise ValueError("Node list cannot be empty.")
-    actual_node = node[0]
+    
+    actual_node = node[0] if type(node) is list else node
+    
     if not isinstance(actual_node, Tag):
         raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+    
     return actual_node.text.strip()
 
 def get_node_attribute(node: List[Union[str, Tag]], attribute: str) -> str:
@@ -53,10 +56,13 @@ def get_node_attribute(node: List[Union[str, Tag]], attribute: str) -> str:
     """
     if not node:
         raise ValueError("Node list cannot be empty.")
-    actual_node = node[0]
+    
+    actual_node = node[0] if type(node) is list else node
+    
     if not isinstance(actual_node, Tag):
         raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
-    return actual_node.get(attribute, "")
+    
+    return " ".join(actual_node.get(attribute, ""))
 
 def get_parent_node_text(node: List[Union[str, Tag]]) -> str:
     """
@@ -73,10 +79,14 @@ def get_parent_node_text(node: List[Union[str, Tag]]) -> str:
     """
     if not node:
         raise ValueError("Node list cannot be empty.")
-    actual_node = node[0]
+
+    actual_node = node[0] if type(node) is list else node if type(node) is list else node
+
     if not isinstance(actual_node, Tag):
         raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+
     parent_node = actual_node.find_parent()
+
     return parent_node.text.strip() if parent_node else ""
 
 def get_child_node_text(node: List[Union[str, Tag]]) -> str:
@@ -94,10 +104,14 @@ def get_child_node_text(node: List[Union[str, Tag]]) -> str:
     """
     if not node:
         raise ValueError("Node list cannot be empty.")
-    actual_node = node[0]
+
+    actual_node = node[0] if type(node) is list else node
+
     if not isinstance(actual_node, Tag):
         raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+
     child_node = actual_node.find_next()
+
     return child_node.text.strip() if child_node else ""
 
 def count_child_nodes(node: List[Union[str, Tag]]) -> int:
@@ -115,9 +129,12 @@ def count_child_nodes(node: List[Union[str, Tag]]) -> int:
     """
     if not node:
         raise ValueError("Node list cannot be empty.")
-    actual_node = node[0]
+
+    actual_node = node[0] if type(node) is list else node
+
     if not isinstance(actual_node, Tag):
         raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+
     return len(actual_node.find_all())
 
 def get_sibling_node_text(node: List[Union[str, Tag]]) -> str:
@@ -135,10 +152,14 @@ def get_sibling_node_text(node: List[Union[str, Tag]]) -> str:
     """
     if not node:
         raise ValueError("Node list cannot be empty.")
-    actual_node = node[0]
+
+    actual_node = node[0] if type(node) is list else node
+
     if not isinstance(actual_node, Tag):
         raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+
     sibling_node = actual_node.find_next_sibling()
+
     return sibling_node.text.strip() if sibling_node else ""
 
 def get_parent_attribute(node: List[Union[str, Tag]], attribute: str) -> str:
@@ -157,11 +178,15 @@ def get_parent_attribute(node: List[Union[str, Tag]], attribute: str) -> str:
     """
     if not node:
         raise ValueError("Node list cannot be empty.")
-    actual_node = node[0]
+    actual_node = node[0] if type(node) is list else node
+
     if not isinstance(actual_node, Tag):
         raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+
     parent_node = actual_node.find_parent()
-    return parent_node.get(attribute, "") if parent_node else ""
+    attribute = parent_node.get(attribute, "") if parent_node else ""
+
+    return "".join(attribute) if type(attribute) is list else attribute
 
 def get_child_attribute(node: List[Union[str, Tag]], attribute: str) -> str:
     """
@@ -179,8 +204,10 @@ def get_child_attribute(node: List[Union[str, Tag]], attribute: str) -> str:
     """
     if not node:
         raise ValueError("Node list cannot be empty.")
-    actual_node = node[0]
+    actual_node = node[0] if type(node) is list else node
+    
     if not isinstance(actual_node, Tag):
         raise TypeError(f"Expected a bs4.element.Tag, got {type(actual_node)} instead.")
+
     child_node = actual_node.find_next()
-    return child_node.get(attribute, "") if child_node else ""
+    return " ".join(child_node.get(attribute, "")) if child_node else ""
