@@ -53,20 +53,16 @@ class test_FeatureDefinition(unittest.TestCase):
         optimal_thread_count = multiprocessing.cpu_count()
         pool_scheduler = ThreadPoolScheduler(optimal_thread_count)
         url = ['https://mirasvit.com/knowledge-base/tips-on-how-to-change-the-magento-base-url-in-default-magento.html']
-        expected_output = [[('knowledge-base/', 0)],
-                           [('tips', 0), ('on', 1), ('how', 2), ('to', 3), ('change', 4), ('the', 5), ('magento', 6),
-                            ('base', 7), ('url', 8), ('in', 9), ('default', 10), ('magento.html', 11)]]
+        expected_output = [[('tips', 0), ('on', 1), ('how', 2), ('to', 3), ('change', 4), ('the', 5), ('magento', 6),
+                            ('base', 7), ('url', 8), ('in', 9), ('default', 10), ('magento.html', 11)],
+                            [('knowledge-base/', 0)]
+                           ]
         dataset = Dataset()
 
-        url_filename = FeatureDefinition(extract_filename)
-        url_path = FeatureDefinition(extract_path, "/", "/")
-        properties_normalizer = Normalizer(PropertiesNormalizer(), delimiter={'delimiter': ["--"]})
-        paths_normalizer = Normalizer(PathsNormalizer(), delimiter={'delimiter': ["/"]})
-
-        properties_normalizer.subscribe(url_filename, pool_scheduler)
-        paths_normalizer.subscribe(url_path, pool_scheduler)
-        url_path.subscribe(dataset, pool_scheduler)
-        url_filename.subscribe(dataset, pool_scheduler)
+        url_filename = FeatureDefinition(extract_filename, [dataset])
+        url_path = FeatureDefinition(extract_path, [dataset], "/", "/")
+        paths_normalizer = Normalizer(PathsNormalizer(), [url_path], delimiter={'delimiter': ["/"]})
+        properties_normalizer = Normalizer(PropertiesNormalizer(), [url_filename], delimiter={'delimiter': ["--"]})
 
         dataset.add_samples(url)
         for i in dataset.datastore.values:

@@ -44,7 +44,7 @@ class TestHTMLExtractors(unittest.TestCase):
             get_node_text(self.empty_node)
 
     def test_get_node_attribute_valid(self):
-        self.assertEqual(get_node_attribute(self.valid_node, 'class'), ['child'])
+        self.assertEqual(get_node_attribute(self.valid_node, 'class'), 'child')
 
     def test_get_node_attribute_invalid(self):
         with self.assertRaises(TypeError):
@@ -86,7 +86,7 @@ class TestHTMLExtractors(unittest.TestCase):
             get_parent_attribute(self.invalid_node, 'id')
 
     def test_get_child_attribute_valid(self):
-        self.assertEqual(get_child_attribute(self.valid_node, 'class'), ['sibling'])
+        self.assertEqual(get_child_attribute(self.valid_node, 'class'), 'sibling')
 
     def test_get_child_attribute_invalid(self):
         with self.assertRaises(TypeError):

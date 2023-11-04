@@ -7,10 +7,7 @@ def test_integration_get_node_text():
     dataset = Dataset()
     
     # Create the feature definition
-    feature_def = FeatureDefinition(get_node_text)
-    
-    # Subscribe the feature to the dataset
-    feature_def.subscribe(dataset)
+    feature_def = FeatureDefinition(get_node_text, [dataset])
     
     # Prepare sample HTML and create BeautifulSoup object
     sample_html = "<html><body><p>Test Text</p></body></html>"
@@ -29,8 +26,7 @@ def test_integration_get_node_text():
 
 def test_integration_get_node_attribute():
     dataset = Dataset()
-    feature_def = FeatureDefinition(get_node_attribute, "class")
-    feature_def.subscribe(dataset)
+    feature_def = FeatureDefinition(get_node_attribute, [dataset], "class")
     
     sample_html = "<html><body><p class='test_class'>Test Text</p></body></html>"
     soup = BeautifulSoup(sample_html, 'html.parser')
@@ -38,12 +34,11 @@ def test_integration_get_node_attribute():
     
     dataset.add_samples([[node]])
     processed_samples = dataset.datastore
-    assert processed_samples.iloc[0, 1] == ["test_class"]
+    assert processed_samples.iloc[0, 1] == "test_class"
 
 def test_integration_get_parent_node_text():
     dataset = Dataset()
-    feature_def = FeatureDefinition(get_parent_node_text)
-    feature_def.subscribe(dataset)
+    feature_def = FeatureDefinition(get_parent_node_text, [dataset])
     
     sample_html = "<html><body><p>Test Text</p></body></html>"
     soup = BeautifulSoup(sample_html, 'html.parser')
@@ -55,8 +50,7 @@ def test_integration_get_parent_node_text():
 
 def test_integration_get_child_node_text():
     dataset = Dataset()
-    feature_def = FeatureDefinition(get_child_node_text)
-    feature_def.subscribe(dataset)
+    feature_def = FeatureDefinition(get_child_node_text, [dataset])
     
     sample_html = "<html><body><div><p>Child Text</p></div></body></html>"
     soup = BeautifulSoup(sample_html, 'html.parser')
@@ -68,8 +62,7 @@ def test_integration_get_child_node_text():
 
 def test_integration_count_child_nodes():
     dataset = Dataset()
-    feature_def = FeatureDefinition(count_child_nodes)
-    feature_def.subscribe(dataset)
+    feature_def = FeatureDefinition(count_child_nodes, [dataset])
     
     sample_html = "<html><body><div><p>Child 1</p><p>Child 2</p></div></body></html>"
     soup = BeautifulSoup(sample_html, 'html.parser')
@@ -81,8 +74,7 @@ def test_integration_count_child_nodes():
 
 def test_integration_get_sibling_node_text():
     dataset = Dataset()
-    feature_def = FeatureDefinition(get_sibling_node_text)
-    feature_def.subscribe(dataset)
+    feature_def = FeatureDefinition(get_sibling_node_text, [dataset])
     
     sample_html = "<html><body><p>Test Text</p><p>Sibling Text</p></body></html>"
     soup = BeautifulSoup(sample_html, 'html.parser')
@@ -94,8 +86,7 @@ def test_integration_get_sibling_node_text():
 
 def test_integration_get_parent_attribute():
     dataset = Dataset()
-    feature_def = FeatureDefinition(get_parent_attribute, "id")
-    feature_def.subscribe(dataset)
+    feature_def = FeatureDefinition(get_parent_attribute, [dataset], "id")
     
     sample_html = "<html><body><div id='parent_id'><p>Test Text</p></div></body></html>"
     soup = BeautifulSoup(sample_html, 'html.parser')
@@ -107,8 +98,7 @@ def test_integration_get_parent_attribute():
 
 def test_integration_get_child_attribute():
     dataset = Dataset()
-    feature_def = FeatureDefinition(get_child_attribute, "class")
-    feature_def.subscribe(dataset)
+    feature_def = FeatureDefinition(get_child_attribute, [dataset], "class")
     
     sample_html = "<html><body><div><p class='child_class'>Child Text</p></div></body></html>"
     soup = BeautifulSoup(sample_html, 'html.parser')
@@ -116,4 +106,4 @@ def test_integration_get_child_attribute():
     
     dataset.add_samples([[node]])
     processed_samples = dataset.datastore
-    assert processed_samples.iloc[0, 1] == ["child_class"]
+    assert processed_samples.iloc[0, 1] == "child_class"

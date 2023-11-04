@@ -9,10 +9,8 @@ from artifician.feature_definition import FeatureDefinition
 @given("We have dummy dataset and feature_definition objects created")
 def step_impl():
     pytest.dataset = Dataset()
-    pytest.feature_definition = FeatureDefinition(lambda x: x)
-    pytest.feature_definition.subscribe(pytest.dataset)
-    pytest.mapper = Mapper(FeatureMap())
-    pytest.mapper.subscribe(pytest.feature_definition)
+    pytest.feature_definition = FeatureDefinition(lambda x: x, [pytest.dataset])
+    pytest.mapper = Mapper(FeatureMap(), [pytest.feature_definition])
 
 
 @scenario("features/mapper.feature", "mapper with single element and single feature map (map_keys = False)")
@@ -64,10 +62,8 @@ def test_key_values_list():
 @given(parsers.parse("We are given list of key values pair as a {input_string} to map"))
 def step_impl(input_string):
     pytest.dataset = Dataset()
-    pytest.feature_definition = FeatureDefinition(lambda x: x)
-    pytest.feature_definition.subscribe(pytest.dataset)
-    pytest.mapper = Mapper(FeatureMap(), map_key_values=True)
-    pytest.mapper.subscribe(pytest.feature_definition)
+    pytest.feature_definition = FeatureDefinition(lambda x: x, [pytest.dataset])
+    pytest.mapper = Mapper(FeatureMap(), [pytest.feature_definition], map_key_values=True)
     pytest.input_string = ast.literal_eval(input_string)
 
 
