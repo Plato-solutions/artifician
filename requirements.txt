@@ -7,3 +7,4 @@ pytest-cov
 sphinx-markdown-builder
 beautifulsoup4
 myst-parser
+setuptools
