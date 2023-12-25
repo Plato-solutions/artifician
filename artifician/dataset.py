@@ -1,5 +1,5 @@
 """
-   Copyright 2021 Plato Solutions, Inc.
+   Copyright 2023 Plato Solutions, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -14,76 +14,81 @@
    limitations under the License.
 """
 import pandas as pd
+import logging
+from typing import Any, List
 from rx.subject import Subject
 
-
 class Dataset:
-    """ Dataset contains all the functionality for preparing artifician data
-        Dataset has events which are observed by observers (for eg: FeatureDefiniton, Processor)
-        All the processed artifician data is stored in datastore
-        which is an object of Pandas dataframe
+    """
+    Dataset contains all the functionality for preparing Artifician data.
+    It observes events and stores all processed data in a Pandas DataFrame.
 
     Attributes:
-        cached (dictionary): {event: rx.core.observable.observable.Observable}
-        datastore (pandas.core.frame.DataFrame): all the samples are stored in datastore
-        PREPARE_DATASET (function): event
-        POST_PROCESS (function): event
+        cached (dict): Cached observables for different events.
+        datastore (pd.DataFrame): DataFrame to store all samples.
+        PREPARE_DATASET (Callable): Event to prepare the dataset.
+        POST_PROCESS (Callable): Event for post-processing actions on the dataset.
     """
 
     def __init__(self):
-
+        self.logger = logging.getLogger(__name__)
         self.features_sample = None
         self.cached = {}
         self.datastore = pd.DataFrame()
         self.PREPARE_DATASET = self.add_samples
         self.POST_PROCESS = self.post_process
 
-    def add_samples(self, samples):
+    def add_samples(self, samples: Any) -> pd.DataFrame:
         """
-        add samples to the datastore.
+        Adds samples to the datastore.
 
         Args:
-            samples (any): artifician data
+            samples (Any): Artifician data to be added.
 
-        Return:
-            datastore (pandas.core.frame.DataFrame): dataset
+        Returns:
+            pd.DataFrame: The updated dataset.
+
+        Raises:
+            TypeError: If the input data is not a list.
         """
-        sample_data = []
+        if not isinstance(samples, list):
+            self.logger.error(f"Input data should be list, not {type(samples)}")
+            raise TypeError(f"Input data should be list, not {type(samples)}")
 
-        if type(samples) is not list: raise TypeError(f"input data should be list not {type(samples)}")
+        sample_data = []
 
         try:
             for sample in samples:
                 self.features_sample = [sample]
-                self.cached[self.add_samples].on_next(sample)
+                if self.add_samples in self.cached:
+                    self.cached[self.add_samples].on_next(sample)
                 sample_data.append(self.features_sample)
-        except KeyError:
-            print("No module has subscribed to dataset")
+        except KeyError as e:
+            self.logger.warning("No module has subscribed to dataset: " + str(e))
 
         self.datastore = pd.DataFrame(sample_data)
-
         return self.datastore
 
     def observe(self, event):
-        """ build and return observable for given event. This method is
-            called by the observer who wants to listen to the particular event.
+        """
+        Builds and returns an observable for a given event.
 
         Args:
-            event (function): function to create observable from
+            event (Callable): Function to create an observable from.
 
         Returns:
-            observable (rx.core.observable.observable.Observable): Observable
+            rx.subject.Subject: Observable for the given event.
         """
-
         if event not in self.cached:
             self.cached[event] = Subject()
 
         return self.cached[event]
 
     def post_process(self):
-        """ This event should be called after artifician data is prepared.
-            All the actions that needs to performed collectively on the whole
-            dataset should listen to post_process event.
         """
+        This event should be called after Artifician data is prepared.
+        Listeners to the post_process event can perform collective actions on the dataset.
+        """
+        if self.post_process in self.cached:
+            self.cached[self.post_process].on_next(self.datastore)
 
-        self.cached[self.post_process].on_next(self.datastore)

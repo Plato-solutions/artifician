@@ -1,5 +1,5 @@
 """
-   Copyright 2021 Plato Solutions, Inc.
+   Copyright 2023 Plato Solutions, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -32,10 +32,10 @@ class Mapper(processor.Processor):
 
             map_key_values (Boolean):  True = map both the key and values, False = map only values
         """
-        if subscribe_to is None: 
-            raise ValueError("Mapper must be subscribed to atleast one publisher")
-        for publisher in subscribe_to:
-            self.subscribe(publisher)
+        if subscribe_to is not None:
+            for publisher in subscribe_to:
+                self.subscribe(publisher)
+        super().__init__()
         self.feature_map = feature_map
         self.map_key_values = map_key_values
 
@@ -62,6 +62,7 @@ class Mapper(processor.Processor):
                     value_id.append(self.feature_map.get_value_id(value[0]))
 
         publisher.value = value_id
+        return value_id
 
     def subscribe(self, publisher, pool_scheduler=None):
         """Defines logic for subscribing to an event in publisher

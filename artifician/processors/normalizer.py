@@ -1,5 +1,5 @@
 """
-   Copyright 2021 Plato Solutions, Inc.
+   Copyright 2023 Plato Solutions, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -33,10 +33,11 @@ class Normalizer(processor.Processor):
             strategy (NormalizerStrategy): NormalizerStrategy instance which normalizes string
             delimiter (dictionary):  delimiter for splitting the string
         """
-        if not subscribe_to:
-            raise ValueError("normalizer must be subscribed to at least one publisher")
-        for publisher in subscribe_to:
-            self.subscribe(publisher)
+
+        if subscribe_to is not None:
+            for publisher in subscribe_to:
+                self.subscribe(publisher)
+        super().__init__()
         self.strategy = strategy
         self.delimiter = delimiter
 
@@ -58,6 +59,8 @@ class Normalizer(processor.Processor):
             self.strategy, self.delimiter = StrategySelector().select(feature_raw)
 
         publisher.value = self.strategy.normalize(feature_raw, self.delimiter)
+
+        return publisher.value
 
     def subscribe(self, publisher, pool_scheduler=None):
         """Defines logic for subscribing to an event in publisher
