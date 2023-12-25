@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from pathlib import Path
 this_directory = Path(__file__).parent
-long_description = (this_directory / "README.md").read_text()
+long_description = (this_directory / "README.rst").read_text()
 with open("VERSION", "r") as f:
     version = f.read().strip()
 setup(
@@ -24,6 +24,8 @@ setup(
         "pandas",
         "rx>=3.2.0",
         "beautifulsoup4",
+        "spacy",
+        "nltk",
     ],
     project_urls={
         'Documentation': "https://plato-solutions.gitbook.io/artifician/",
