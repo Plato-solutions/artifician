@@ -1,5 +1,4 @@
 import re
-import logging
 from artifician.processors.processor import Processor
 from typing import List, Union
 

@@ -1,4 +1,3 @@
-import logging
 import spacy
 from typing import List, Union
 from artifician.processors.processor import Processor

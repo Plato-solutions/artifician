@@ -1,4 +1,3 @@
-import logging
 from typing import List, Union
 import spacy
 from nltk.stem import PorterStemmer

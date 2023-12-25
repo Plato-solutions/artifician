@@ -1,5 +1,4 @@
 from artifician.processors.processor import Processor
-import logging
 import spacy
 from typing import List, Union
 class TokenizationProcessor(Processor):
