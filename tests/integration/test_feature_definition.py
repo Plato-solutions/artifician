@@ -61,8 +61,8 @@ class test_FeatureDefinition(unittest.TestCase):
 
         url_filename = FeatureDefinition(extract_filename, [dataset])
         url_path = FeatureDefinition(extract_path, [dataset], "/", "/")
-        paths_normalizer = Normalizer(PathsNormalizer(), [url_path], delimiter={'delimiter': ["/"]})
-        properties_normalizer = Normalizer(PropertiesNormalizer(), [url_filename], delimiter={'delimiter': ["--"]})
+        Normalizer(PathsNormalizer(), [url_path], delimiter={'delimiter': ["/"]})
+        Normalizer(PropertiesNormalizer(), [url_filename], delimiter={'delimiter': ["--"]})
 
         dataset.add_samples(url)
         for i in dataset.datastore.values:
