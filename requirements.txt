@@ -8,3 +8,5 @@ sphinx-markdown-builder
 beautifulsoup4
 myst-parser
 setuptools
+nltk
+spacy

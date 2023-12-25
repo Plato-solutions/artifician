@@ -70,15 +70,9 @@ def extract_domain_name(sample):
 input_data = ['https://www.google.com/', 'https://www.youtube.com/']  
   
 dataset = Dataset() # initializing dataset object
-url_domain = FeatureDefinition(extract_domain_name) # initializing feature_definition and passing extractor function name as a parameter 
-normalizer = Normalizer(PropertiesNormalizer(), delimiter = {'delimiter': ["."]})  # Initializing normalizer (processor)
+url_domain = FeatureDefinition(extract_domain_name, dataset) # initializing feature_definition and passing extractor function name as a parameter and subscribing it to dataset
+normalizer = Normalizer(PropertiesNormalizer(), url_domain delimiter = {'delimiter': ["."]})  # Initializing normalizer (processor) and passing properties normalizer as a parameter and subscribing it to url_domain
   
-""" Now let's set up the connections, we can do that using subscribe method. listener subscribes to the event to which he wants to 
-listen to. In following example normalizer subscribes to url_domain feature that means everytime url_domain is processed normalizer 
-will listen to it and perform its execution. Similarly in the case of url_doamin and dataset, here url_domain is listening to datatset. """ 
-
-normalizer.subscribe(url_domain) 
-url_domain.subscribe(dataset)  
   
 """ Now we are all set to go, all we have to do is call add_samples method on the dataset object and pass the input data
 after calling the add_samples, url_domain will start its execution and extract the data using extract_domain_name function, as soon url_domain
