@@ -1,0 +1,7 @@
+Impressionist grabbing the HTML layout was something that was discussed but not included in v1.0 of the systems. You can see that here: https://plato2.slite.com/app/docs/ogE2f-qXHsbeE2#ef6c46a7
+AI system needs both the html layout and the corrected script to be able to learn and improve the accuracy. 
+The reason behind not adding it in the v1.0 is because html layout was expected from crawler and without the html layout the feedback loop was not going to work !!
+The v1.0 will be useful in the cases when the selectors are failing becuase of the change in the html layout. Not only change, but when a selector has failed to reach an item, so it ended up with a null value where original was a real value.
+If v2.0 is required, so something that will take a time to be implemented, probably 1 month.
+And we will still need the Crawler (at least in the automated scraper script initializer).
+So we were wondering if we are going to need the crawler, we would be duplicating that functionality by trying to get html layout from impressionist ?
