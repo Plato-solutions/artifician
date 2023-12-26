@@ -1,12 +1,8 @@
-sphinx == 4.4.0
-sphinx-rtd-theme
 pandas
 rx     == 3.2.0
 pytest-bdd
 pytest-cov
-sphinx-markdown-builder
 beautifulsoup4
-myst-parser
 setuptools
 nltk
 spacy
