@@ -1,4 +1,4 @@
-## Documentation
+## Table of Contents
 ### [Introduction](intro.md)
   * [“Turn your data preparation nightmares into a dream.”](intro.md#turn-your-data-preparation-nightmares-into-a-dream)
   * [Why Artifician?](intro.md#why-artifician)
