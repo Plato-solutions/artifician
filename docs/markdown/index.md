@@ -1,8 +1,3 @@
-<!-- artifician documentation master file, created by
-sphinx-quickstart on Sun Feb 20 23:06:29 2022.
-You can adapt this file completely to your liking, but it should at least
-contain the root `toctree` directive. -->
-
 ## Documentation
 ### [Introduction](intro.md)
   * [“Turn your data preparation nightmares into a dream.”](intro.md#turn-your-data-preparation-nightmares-into-a-dream)
