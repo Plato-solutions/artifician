@@ -1,4 +1,4 @@
-root: ./docs/_build/markdown
+root: ./docs/markdown
 
 structure:
     readme: README.md
