@@ -1,6 +1,6 @@
 package:
   name: "artifician"
-  version: "0.2.2"
+  version: "0.5.0"
 about:
   home: "https://github.com/Plato-solutions/artifician"
   license: "Apache-2.0"
@@ -11,6 +11,8 @@ source:
 build:
   noarch: python
   number: 1
+channel_targets:
+  - conda-forge main
 test:
   imports:
     - artifician
@@ -19,7 +21,6 @@ requirements:
     - python >=3.6
     - pip
   run:
-    - python >=3.6
-    - pandas
-    - rx
+    - rx>=3.2.0
+    - pandas>=1.4.2
     - beautifulsoup4

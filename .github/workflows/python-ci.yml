@@ -18,66 +18,36 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install pytest pytest-cov  # install pytest and pytest-cov
     - name: Run tests with pytest
-      run: pytest
+      run: pytest --cov=./ --cov-report=xml
 
-  bump_version:
-    needs: test
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}  # if needed
+        file: ./coverage.xml
+
+
+  create_release:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install GitHub CLI
-      run: |
-        curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
-        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-        sudo apt update
-        sudo apt install gh
-    - name: Bump version and create a pull request
-      id: bump_version
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-
-        NEW_VERSION=$(python -c 'version = open("VERSION").read().strip().split("."); version[-1] = str(int(version[-1]) + 1); print(".".join(version))')
-        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-        echo "NEW_VERSION=$NEW_VERSION"  # To make sure it's set correctly
-        
-        git checkout -b bump-version-$NEW_VERSION
-        echo $NEW_VERSION > VERSION
-        git add VERSION
-        
-        git commit -m "Bump version to $NEW_VERSION"
-        git push origin bump-version-$NEW_VERSION
-    
-        # Create a pull request using GitHub CLI
-        gh pr create --base main --head bump-version-$NEW_VERSION --title "Bump version to $NEW_VERSION" --body "Automatic version bump to $NEW_VERSION"
-
-    - name: Save NEW_VERSION to an artifact
-      run: echo "${{ env.NEW_VERSION }}" > new_version.txt
-    - name: Upload new_version artifact
+    - name: Read VERSION file
+      id: version
+      run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV
+    - name: Generate new_version artifact  # Add this step
+      run: echo "${{ env.VERSION }}" > new_version.txt
+    - name: Upload new_version artifact  # And this step
       uses: actions/upload-artifact@v2
       with:
         name: new_version
         path: new_version.txt
-
-
-  create_release:
-    needs: bump_version
-    runs-on: ubuntu-latest
-    steps:
-    - name: Download new_version artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: new_version
-    - name: Set TAG_NAME from artifact
-      run: echo "TAG_NAME=$(cat new_version.txt)" >> $GITHUB_ENV
     - name: Create GitHub Release
       uses: actions/create-release@v1
       with:
-        tag_name: ${{ env.TAG_NAME }}
-        release_name: Release ${{ env.TAG_NAME }}
+        tag_name: ${{ env.VERSION }}
+        release_name: Release ${{ env.VERSION }}
         draft: false
         prerelease: false
       env:
@@ -102,7 +72,7 @@ jobs:
       run: |
         python setup.py sdist bdist_wheel  # This should work now
         twine upload dist/* -u $PYPI_USERNAME -p $PYPI_PASSWORD
-  # TODO: fix the deploy conda
+        
   # deploy-conda:
   #   needs: create_release
   #   runs-on: ubuntu-latest
@@ -126,8 +96,6 @@ jobs:
   #   - name: Install conda-build
   #     run: conda install conda-build
   #   - name: Install pip via conda
-  #     run: conda install pip --yes
-  #   - name: Install Python packages from requirements.txt
   #     run: pip install -r requirements.txt
   #   - name: Add forge channel
   #     run: conda config --add channels conda-forge
@@ -140,6 +108,6 @@ jobs:
   #       ANACONDA_USERNAME: ${{ secrets.ANACONDA_USERNAME }}
   #       ANACONDA_PASSWORD: ${{ secrets.ANACONDA_PASSWORD }}
   #     run: |
-  #       conda build .
+  #       conda build -c conda-forge .
   #       anaconda login --user $ANACONDA_USERNAME --password $ANACONDA_PASSWORD
   #       anaconda upload $HOME/miniconda/conda-bld/**/artifician*.tar.bz2  

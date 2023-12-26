@@ -1,17 +1,35 @@
 artifician.processors package
 =============================
 
-.. automodule:: artifician.processors
+
+artifician.processors.mapper module
+-----------------------------------
+
+.. automodule:: artifician.processors.mapper
    :members:
    :undoc-members:
    :show-inheritance:
 
-Submodules
-----------
+artifician.processors.normalizer module
+---------------------------------------
 
-.. toctree::
-   :maxdepth: 4
+.. automodule:: artifician.processors.normalizer
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
-   artifician.processors.mapper
-   artifician.processors.normalizer
-   artifician.processors.processor
+artifician.processors.processor module
+--------------------------------------
+
+.. automodule:: artifician.processors.processor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: artifician.processors
+   :members:
+   :undoc-members:
+   :show-inheritance:

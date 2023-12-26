@@ -2,7 +2,6 @@
 
 Let’s break down the simple code example to fully understand the working of the library.
 
-
 ---
 
 ## Define Extractor
@@ -58,12 +57,11 @@ now whenever add_samples method is called url_domain will notice it and it will 
 Similarly, as normalizer(Processor) subscribes to url_domain it starts listening to process method of the url_domain.
 and whenever process method of the FeatureDefinition is called Processor executes it own process method.
 
-
 ---
 
 ## Output
 
-|   | 0 | 1 |
-| - | ---------------------------------------------- | ------------ | 
-| 0 | [https://www.google.com/](https://www.google.com/) | [(www, 0), (google, 1), (com, 2)]|
-| 0 | [https://www.youtube.com/](https://www.youtube.com/) | [(www, 0), (youtube, 1), (com, 2)] |
+|    | 0                                                    | 1                                  |
+|----|------------------------------------------------------|------------------------------------|
+|  0 | [https://www.google.com/](https://www.google.com/)   | [(www, 0), (google, 1), (com, 2)]  |
+|  0 | [https://www.youtube.com/](https://www.youtube.com/) | [(www, 0), (youtube, 1), (com, 2)] |

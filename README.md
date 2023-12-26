@@ -1,5 +1,14 @@
 
 <div id="top"></div>  
+
+[![codecov](https://codecov.io/gh/Plato-solutions/artifician/branch/main/graph/badge.svg?token=de0f5b64-eda8-4352-9d4d-48af50af44bb)](https://codecov.io/gh/Plato-solutions/artifician)
+![CI/CD](https://github.com/Plato-solutions/artifician/actions/workflows/python-ci.yml/badge.svg?branch=main)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Plato-solutions/artifician)
+[![PyPI version](https://badge.fury.io/py/artifician.svg)](https://pypi.org/project/artifician/)
+[![GitBook](https://img.shields.io/badge/docs-GitBook-blue)](https://plato-solutions.gitbook.io/artifician/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Conda](https://anaconda.org/plato_solutions/artifician/badges/version.svg)](https://anaconda.org/plato_solutions/artifician)
+
   
 <!-- PROJECT LOGO -->  
   

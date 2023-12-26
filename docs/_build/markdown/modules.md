@@ -1,28 +1,23 @@
-# API
+# API Reference
 
-
-* [artifician package](API.md)
-
-
-    * [Subpackages](API.md#subpackages)
-
-
-        * [artifician.processors package](artifician.processors.md)
-
-
-            * [Submodules](artifician.processors.md#submodules)
-
-
-    * [Submodules](API.md#submodules)
-
-
-        * [artifician.dataset module](artifician.dataset.md)
-
-
-            * [`Dataset`](artifician.dataset.md#artifician.dataset.Dataset)
-
-
-        * [artifician.feature_definition module](artifician.feature_definition.md)
-
-
-            * [`FeatureDefinition`](artifician.feature_definition.md#artifician.feature_definition.FeatureDefinition)
+* [artifician package](artifician.md)
+  * [Subpackages](artifician.md#subpackages)
+    * [artifician.extractors package](artifician.extractors.md)
+      * [artifician.extractors.html_extractors module](artifician.extractors.md#module-artifician.extractors.html_extractors)
+      * [Module contents](artifician.extractors.md#module-artifician.extractors)
+    * [artifician.processors package](artifician.processors.md)
+      * [artifician.processors.mapper module](artifician.processors.md#module-artifician.processors.mapper)
+      * [artifician.processors.normalizer module](artifician.processors.md#module-artifician.processors.normalizer)
+      * [artifician.processors.processor module](artifician.processors.md#module-artifician.processors.processor)
+      * [Module contents](artifician.processors.md#module-artifician.processors)
+  * [artifician.dataset module](artifician.md#module-artifician.dataset)
+    * [`Dataset`](artifician.md#artifician.dataset.Dataset)
+      * [`Dataset.add_samples()`](artifician.md#artifician.dataset.Dataset.add_samples)
+      * [`Dataset.observe()`](artifician.md#artifician.dataset.Dataset.observe)
+      * [`Dataset.post_process()`](artifician.md#artifician.dataset.Dataset.post_process)
+  * [artifician.feature_definition module](artifician.md#module-artifician.feature_definition)
+    * [`FeatureDefinition`](artifician.md#artifician.feature_definition.FeatureDefinition)
+      * [`FeatureDefinition.map()`](artifician.md#artifician.feature_definition.FeatureDefinition.map)
+      * [`FeatureDefinition.observe()`](artifician.md#artifician.feature_definition.FeatureDefinition.observe)
+      * [`FeatureDefinition.process()`](artifician.md#artifician.feature_definition.FeatureDefinition.process)
+      * [`FeatureDefinition.subscribe()`](artifician.md#artifician.feature_definition.FeatureDefinition.subscribe)
