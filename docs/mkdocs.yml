@@ -1,0 +1,15 @@
+site_name: Artifician Docs
+
+theme:
+  name: readthedocs
+
+plugins:
+  - mkdocstrings
+
+nav:
+  - Home: index.md
+  - Introduction: intro.md
+  - "Getting Started": getting_started.md
+  - "Quick Start": quick_start.md
+  - "Advanced Concepts": advanced_concepts.md
+  - "API Reference": api.md

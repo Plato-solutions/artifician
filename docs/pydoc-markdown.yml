@@ -1,0 +1,12 @@
+loaders:
+  - type: python
+    packages:
+      - artifician
+
+processors:
+  - type: filter
+  - type: smart
+
+renderer:
+  type: markdown
+  render_toc: true
