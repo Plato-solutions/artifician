@@ -15,7 +15,7 @@
 """
 import logging
 from abc import ABC, abstractmethod
-from artifician.processors.processor_chain_manager import ProcessorChainManager
+from artifician.processors.chain import chain
 
 class Processor(ABC):
     """
@@ -60,7 +60,7 @@ class Processor(ABC):
             next_processor: The next processor to add to the chain.
 
         Returns:
-            ProcessorChainManager: The chain manager managing this processor chain.
+            chain: chain of processors
 
         Raises:
             TypeError: If the next_processor is not a valid processor instance.
@@ -71,7 +71,7 @@ class Processor(ABC):
                 raise TypeError("The next_processor must be a valid processor instance")
 
             if not self.chain_manager:
-                self.chain_manager = ProcessorChainManager([self])
+                self.chain_manager = chain([self])
 
             self.next_processor = next_processor
             self.chain_manager.then(next_processor)

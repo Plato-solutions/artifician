@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 """
-class ProcessorChainManager:
+class chain:
     """Manages a chain of processors.
 
     This class handles the sequential execution of a chain of processors and
@@ -23,29 +23,31 @@ class ProcessorChainManager:
         processors (list): A list of processors in the chain.
     """
     def __init__(self, processors=None) -> None:
-        """Initializes the ProcessorChainManager with an optional list of processors.
+        """Initializes the chain with an optional list of processors.
 
         Args:
             processors (list, optional): An initial list of processors to be managed.
         """
         self.processors = processors or []
 
-    def then(self, next_processor) -> 'ProcessorChainManager':
+    def then(self, next_processor) -> 'chain':
         """Adds a processor to the end of the chain.
 
         Args:
             processor (Processor): The processor to add to the chain.
 
         Returns:
-            processor_chain_manager (ProcessorChainManager): The ProcessorChainManager instance.
+            processor_chain_manager (chain): The chain instance.
         """
-        if not hasattr(next_processor, 'process'):
-            raise TypeError("next_processor must have a 'process' method")
-        
-        self.processors.append(next_processor)
-        
-        return self
+        if not isinstance(next_processor, list):
+            next_processor = [next_processor]
 
+        for processor in next_processor:
+            if not hasattr(processor, 'process'):
+                raise TypeError("Each processor must have a 'process' method")
+            self.processors.append(processor)
+
+        return self
 
     def process(self, publisher, data: any) -> any:
         """Processes data sequentially through the chain of processors.
