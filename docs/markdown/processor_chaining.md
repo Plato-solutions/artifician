@@ -22,8 +22,7 @@ This approach lets you link processors together in a logical sequence, ideal for
 
 - **Chain Processors with `.then()`, Using Lists**:
   ```python
-  processors = [TextCleaningProcessor(), TokenizationProcessor(), StemLemProcessor()]
-  pipeline = ProcessorChainManager(processors)
+  pipeline = TextCleaningProcessor().then([TokenizationProcessor(), StemLemProcessor()])
   ```
 This method enhances flexibility, enabling you to add multiple processors at once using a list - perfect for incorporating groups of processors efficiently.
 
