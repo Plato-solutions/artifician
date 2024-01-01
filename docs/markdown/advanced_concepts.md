@@ -2,13 +2,13 @@
 
 The Artifician library is designed to be easy to use for simple tasks, yet flexible enough for complex data preparation workflows. In this section, we will delve into the more advanced features and architectural choices that power the Artifician library.
 
-## [Processor Chain Manager](processor_chain_manager.md)
-  * [Overview](processor_chain_manager.md#overview)
-  * [Key Features](processor_chain_manager.md#key-features)
-  * [Syntax Showcase](processor_chain_manager.md#syntax-showcase)
-  * [Example Scenario: NLP Processing Pipeline](processor_chain_manager.md#example-scenario-nlp-processing-pipeline)
-  * [Building an NLP Pipeline with PCM](processor_chain_manager.md#building-an-nlp-pipeline-with-pcm)
-  * [Output](processor_chain_manager.md#output)
+## [Processor Chaining](processor_chaining.md)
+  * [Overview](processor_chaining.md#overview)
+  * [Key Features](processor_chaining.md#key-features)
+  * [Syntax Showcase](processor_chaining.md#syntax-showcase)
+  * [Example Scenario: NLP Processing Pipeline](processor_chaining.md#example-scenario-nlp-processing-pipeline)
+  * [Building an NLP Pipeline with PCM](processor_chaining.md#building-an-nlp-pipeline-with-pcm)
+  * [Output](processor_chaining.md#output)
 ## [Defining Custom Extractors](define_extractors.md)
   * [Introduction](define_extractors.md#introduction)
   * [Why Custom Extractors?](define_extractors.md#why-custom-extractors)

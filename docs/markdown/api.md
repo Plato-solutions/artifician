@@ -13,6 +13,12 @@
     * [add\_samples](#artifician.dataset.Dataset.add_samples)
     * [observe](#artifician.dataset.Dataset.observe)
     * [post\_process](#artifician.dataset.Dataset.post_process)
+* [artifician.processors.chain](#artifician.processors.chain)
+  * [chain](#artifician.processors.chain.chain)
+    * [\_\_init\_\_](#artifician.processors.chain.chain.__init__)
+    * [then](#artifician.processors.chain.chain.then)
+    * [process](#artifician.processors.chain.chain.process)
+    * [subscribe](#artifician.processors.chain.chain.subscribe)
 * [artifician.processors.mapper](#artifician.processors.mapper)
   * [Mapper](#artifician.processors.mapper.Mapper)
     * [\_\_init\_\_](#artifician.processors.mapper.Mapper.__init__)
@@ -26,33 +32,27 @@
     * [process](#artifician.processors.processor.Processor.process)
     * [subscribe](#artifician.processors.processor.Processor.subscribe)
     * [then](#artifician.processors.processor.Processor.then)
-* [artifician.processors.text\_processors](#artifician.processors.text_processors)
-* [artifician.processors.text\_processors.text\_cleaner](#artifician.processors.text_processors.text_cleaner)
-  * [TextCleaningProcessor](#artifician.processors.text_processors.text_cleaner.TextCleaningProcessor)
-    * [\_\_init\_\_](#artifician.processors.text_processors.text_cleaner.TextCleaningProcessor.__init__)
-    * [process](#artifician.processors.text_processors.text_cleaner.TextCleaningProcessor.process)
-    * [subscribe](#artifician.processors.text_processors.text_cleaner.TextCleaningProcessor.subscribe)
-* [artifician.processors.text\_processors.stop\_word\_remover](#artifician.processors.text_processors.stop_word_remover)
-  * [StopWordsRemoverProcessor](#artifician.processors.text_processors.stop_word_remover.StopWordsRemoverProcessor)
-    * [\_\_init\_\_](#artifician.processors.text_processors.stop_word_remover.StopWordsRemoverProcessor.__init__)
-    * [process](#artifician.processors.text_processors.stop_word_remover.StopWordsRemoverProcessor.process)
-    * [subscribe](#artifician.processors.text_processors.stop_word_remover.StopWordsRemoverProcessor.subscribe)
-* [artifician.processors.text\_processors.tokenizer](#artifician.processors.text_processors.tokenizer)
-  * [TokenizationProcessor](#artifician.processors.text_processors.tokenizer.TokenizationProcessor)
-    * [\_\_init\_\_](#artifician.processors.text_processors.tokenizer.TokenizationProcessor.__init__)
-    * [process](#artifician.processors.text_processors.tokenizer.TokenizationProcessor.process)
-    * [subscribe](#artifician.processors.text_processors.tokenizer.TokenizationProcessor.subscribe)
-* [artifician.processors.text\_processors.stemlemtizer](#artifician.processors.text_processors.stemlemtizer)
-  * [StemLemProcessor](#artifician.processors.text_processors.stemlemtizer.StemLemProcessor)
-    * [\_\_init\_\_](#artifician.processors.text_processors.stemlemtizer.StemLemProcessor.__init__)
-    * [process](#artifician.processors.text_processors.stemlemtizer.StemLemProcessor.process)
-    * [subscribe](#artifician.processors.text_processors.stemlemtizer.StemLemProcessor.subscribe)
-* [artifician.processors.processor\_chain\_manager](#artifician.processors.processor_chain_manager)
-  * [ProcessorChainManager](#artifician.processors.processor_chain_manager.ProcessorChainManager)
-    * [\_\_init\_\_](#artifician.processors.processor_chain_manager.ProcessorChainManager.__init__)
-    * [then](#artifician.processors.processor_chain_manager.ProcessorChainManager.then)
-    * [process](#artifician.processors.processor_chain_manager.ProcessorChainManager.process)
-    * [subscribe](#artifician.processors.processor_chain_manager.ProcessorChainManager.subscribe)
+* [artifician.processors.text](#artifician.processors.text)
+* [artifician.processors.text.text\_cleaner](#artifician.processors.text.text_cleaner)
+  * [TextCleaningProcessor](#artifician.processors.text.text_cleaner.TextCleaningProcessor)
+    * [\_\_init\_\_](#artifician.processors.text.text_cleaner.TextCleaningProcessor.__init__)
+    * [process](#artifician.processors.text.text_cleaner.TextCleaningProcessor.process)
+    * [subscribe](#artifician.processors.text.text_cleaner.TextCleaningProcessor.subscribe)
+* [artifician.processors.text.stop\_word\_remover](#artifician.processors.text.stop_word_remover)
+  * [StopWordsRemoverProcessor](#artifician.processors.text.stop_word_remover.StopWordsRemoverProcessor)
+    * [\_\_init\_\_](#artifician.processors.text.stop_word_remover.StopWordsRemoverProcessor.__init__)
+    * [process](#artifician.processors.text.stop_word_remover.StopWordsRemoverProcessor.process)
+    * [subscribe](#artifician.processors.text.stop_word_remover.StopWordsRemoverProcessor.subscribe)
+* [artifician.processors.text.tokenizer](#artifician.processors.text.tokenizer)
+  * [TokenizationProcessor](#artifician.processors.text.tokenizer.TokenizationProcessor)
+    * [\_\_init\_\_](#artifician.processors.text.tokenizer.TokenizationProcessor.__init__)
+    * [process](#artifician.processors.text.tokenizer.TokenizationProcessor.process)
+    * [subscribe](#artifician.processors.text.tokenizer.TokenizationProcessor.subscribe)
+* [artifician.processors.text.stemlemtizer](#artifician.processors.text.stemlemtizer)
+  * [StemLemProcessor](#artifician.processors.text.stemlemtizer.StemLemProcessor)
+    * [\_\_init\_\_](#artifician.processors.text.stemlemtizer.StemLemProcessor.__init__)
+    * [process](#artifician.processors.text.stemlemtizer.StemLemProcessor.process)
+    * [subscribe](#artifician.processors.text.stemlemtizer.StemLemProcessor.subscribe)
 * [artifician.processors.normalizer](#artifician.processors.normalizer)
   * [Normalizer](#artifician.processors.normalizer.Normalizer)
     * [\_\_init\_\_](#artifician.processors.normalizer.Normalizer.__init__)
@@ -203,7 +203,6 @@ Defines logic for subscribing to an event in a publisher.
 
 # artifician.dataset
 
-
 <a id="artifician.dataset.Dataset"></a>
 
 ## Dataset Objects
@@ -276,10 +275,98 @@ def post_process()
 This event should be called after Artifician data is prepared.
 Listeners to the post_process event can perform collective actions on the dataset.
 
+<a id="artifician.processors.chain"></a>
+
+# artifician.processors.chain
+
+<a id="artifician.processors.chain.chain"></a>
+
+## chain Objects
+
+```python
+class chain()
+```
+
+Manages a chain of processors.
+
+This class handles the sequential execution of a chain of processors and
+can subscribe to a publisher to trigger the processing.
+
+**Attributes**:
+
+- `processors` _list_ - A list of processors in the chain.
+
+<a id="artifician.processors.chain.chain.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(processors=None) -> None
+```
+
+Initializes the chain with an optional list of processors.
+
+**Arguments**:
+
+- `processors` _list, optional_ - An initial list of processors to be managed.
+
+<a id="artifician.processors.chain.chain.then"></a>
+
+#### then
+
+```python
+def then(next_processor) -> 'chain'
+```
+
+Adds a processor to the end of the chain.
+
+**Arguments**:
+
+- `processor` _Processor_ - The processor to add to the chain.
+  
+
+**Returns**:
+
+- `processor_chaining` _chain_ - The chain instance.
+
+<a id="artifician.processors.chain.chain.process"></a>
+
+#### process
+
+```python
+def process(publisher, data: any) -> any
+```
+
+Processes data sequentially through the chain of processors.
+
+**Arguments**:
+
+- `data` - The data to be processed by the chain.
+  
+
+**Returns**:
+
+  The final processed data after passing through all processors.
+
+<a id="artifician.processors.chain.chain.subscribe"></a>
+
+#### subscribe
+
+```python
+def subscribe(publisher, pool_scheduler=None) -> None
+```
+
+Subscribes the processor chain to a feature definition.
+
+The feature definition will trigger the processing of the chain.
+
+**Arguments**:
+
+- `feature_definition` _publisher_ - The feature definition to subscribe to.
+
 <a id="artifician.processors.mapper"></a>
 
 # artifician.processors.mapper
-
 
 <a id="artifician.processors.mapper.Mapper"></a>
 
@@ -392,11 +479,9 @@ converted to str only.
 
 # artifician.processors
 
-
 <a id="artifician.processors.processor"></a>
 
 # artifician.processors.processor
-
 
 <a id="artifician.processors.processor.Processor"></a>
 
@@ -460,22 +545,22 @@ Link this processor to the next one in the chain.
 
 **Returns**:
 
-- `ProcessorChainManager` - The chain manager managing this processor chain.
+- `chain` - chain of processors
   
 
 **Raises**:
 
 - `TypeError` - If the next_processor is not a valid processor instance.
 
-<a id="artifician.processors.text_processors"></a>
+<a id="artifician.processors.text"></a>
 
-# artifician.processors.text\_processors
+# artifician.processors.text
 
-<a id="artifician.processors.text_processors.text_cleaner"></a>
+<a id="artifician.processors.text.text_cleaner"></a>
 
-# artifician.processors.text\_processors.text\_cleaner
+# artifician.processors.text.text\_cleaner
 
-<a id="artifician.processors.text_processors.text_cleaner.TextCleaningProcessor"></a>
+<a id="artifician.processors.text.text_cleaner.TextCleaningProcessor"></a>
 
 ## TextCleaningProcessor Objects
 
@@ -487,7 +572,7 @@ Processor for cleaning and preprocessing text data.
 
 Configurable attributes for various cleaning operations.
 
-<a id="artifician.processors.text_processors.text_cleaner.TextCleaningProcessor.__init__"></a>
+<a id="artifician.processors.text.text_cleaner.TextCleaningProcessor.__init__"></a>
 
 #### \_\_init\_\_
 
@@ -514,7 +599,7 @@ Initialize a TextCleaningProcessor object.
 - `custom_stop_words` _List[str]_ - Optional list of custom stop words.
 - `subscribe_to` _list_ - Optional list of publishers to subscribe to.
 
-<a id="artifician.processors.text_processors.text_cleaner.TextCleaningProcessor.process"></a>
+<a id="artifician.processors.text.text_cleaner.TextCleaningProcessor.process"></a>
 
 #### process
 
@@ -534,7 +619,7 @@ Process the text or list of texts to clean and preprocess.
 
   Union[str, List[str]]: Cleaned and preprocessed text.
 
-<a id="artifician.processors.text_processors.text_cleaner.TextCleaningProcessor.subscribe"></a>
+<a id="artifician.processors.text.text_cleaner.TextCleaningProcessor.subscribe"></a>
 
 #### subscribe
 
@@ -554,11 +639,11 @@ Subscribe to a publisher for event-driven processing.
 
   None
 
-<a id="artifician.processors.text_processors.stop_word_remover"></a>
+<a id="artifician.processors.text.stop_word_remover"></a>
 
-# artifician.processors.text\_processors.stop\_word\_remover
+# artifician.processors.text.stop\_word\_remover
 
-<a id="artifician.processors.text_processors.stop_word_remover.StopWordsRemoverProcessor"></a>
+<a id="artifician.processors.text.stop_word_remover.StopWordsRemoverProcessor"></a>
 
 ## StopWordsRemoverProcessor Objects
 
@@ -572,7 +657,7 @@ Processor for removing stop words from text data.
 
 - `stop_words` _set_ - A set of stop words to be removed.
 
-<a id="artifician.processors.text_processors.stop_word_remover.StopWordsRemoverProcessor.__init__"></a>
+<a id="artifician.processors.text.stop_word_remover.StopWordsRemoverProcessor.__init__"></a>
 
 #### \_\_init\_\_
 
@@ -587,7 +672,7 @@ Initialize a StopWordsRemoverProcessor object.
 - `custom_stop_words` _List[str]_ - Optional list of custom stop words.
 - `subscribe_to` _list_ - Optional list of publishers to subscribe to.
 
-<a id="artifician.processors.text_processors.stop_word_remover.StopWordsRemoverProcessor.process"></a>
+<a id="artifician.processors.text.stop_word_remover.StopWordsRemoverProcessor.process"></a>
 
 #### process
 
@@ -612,7 +697,7 @@ Process the text or list of texts to remove stop words.
 
 - `ValueError` - If the input text is None or an empty list.
 
-<a id="artifician.processors.text_processors.stop_word_remover.StopWordsRemoverProcessor.subscribe"></a>
+<a id="artifician.processors.text.stop_word_remover.StopWordsRemoverProcessor.subscribe"></a>
 
 #### subscribe
 
@@ -632,11 +717,11 @@ Subscribe to a publisher for event-driven processing.
 
   None
 
-<a id="artifician.processors.text_processors.tokenizer"></a>
+<a id="artifician.processors.text.tokenizer"></a>
 
-# artifician.processors.text\_processors.tokenizer
+# artifician.processors.text.tokenizer
 
-<a id="artifician.processors.text_processors.tokenizer.TokenizationProcessor"></a>
+<a id="artifician.processors.text.tokenizer.TokenizationProcessor"></a>
 
 ## TokenizationProcessor Objects
 
@@ -651,7 +736,7 @@ Tokenization Processor for splitting text into tokens.
 - `method` _str_ - Method to use for tokenization ('word' or 'sentence').
 - `nlp` - spaCy language model for processing text.
 
-<a id="artifician.processors.text_processors.tokenizer.TokenizationProcessor.__init__"></a>
+<a id="artifician.processors.text.tokenizer.TokenizationProcessor.__init__"></a>
 
 #### \_\_init\_\_
 
@@ -665,7 +750,7 @@ Initialize a TokenizationProcessor object.
 
 - `method` _str_ - Method to use for tokenization ('word' or 'sentence').
 
-<a id="artifician.processors.text_processors.tokenizer.TokenizationProcessor.process"></a>
+<a id="artifician.processors.text.tokenizer.TokenizationProcessor.process"></a>
 
 #### process
 
@@ -691,7 +776,7 @@ Process the text or list of texts and split it into tokens.
 
 - `ValueError` - If the input text is None or an empty list.
 
-<a id="artifician.processors.text_processors.tokenizer.TokenizationProcessor.subscribe"></a>
+<a id="artifician.processors.text.tokenizer.TokenizationProcessor.subscribe"></a>
 
 #### subscribe
 
@@ -711,11 +796,11 @@ Defines logic for subscribing to an event in publisher
 
   None
 
-<a id="artifician.processors.text_processors.stemlemtizer"></a>
+<a id="artifician.processors.text.stemlemtizer"></a>
 
-# artifician.processors.text\_processors.stemlemtizer
+# artifician.processors.text.stemlemtizer
 
-<a id="artifician.processors.text_processors.stemlemtizer.StemLemProcessor"></a>
+<a id="artifician.processors.text.stemlemtizer.StemLemProcessor"></a>
 
 ## StemLemProcessor Objects
 
@@ -731,7 +816,7 @@ Processor for applying stemming and lemmatization to text data.
 - `nlp` - spaCy language model for lemmatization.
 - `stemmer` - NLTK stemmer for stemming.
 
-<a id="artifician.processors.text_processors.stemlemtizer.StemLemProcessor.__init__"></a>
+<a id="artifician.processors.text.stemlemtizer.StemLemProcessor.__init__"></a>
 
 #### \_\_init\_\_
 
@@ -746,7 +831,7 @@ Initialize a StemLemProcessor object.
 - `mode` _str_ - Operation mode ('stemming' or 'lemmatization').
 - `subscribe_to` _list_ - Optional list of publishers to subscribe to.
 
-<a id="artifician.processors.text_processors.stemlemtizer.StemLemProcessor.process"></a>
+<a id="artifician.processors.text.stemlemtizer.StemLemProcessor.process"></a>
 
 #### process
 
@@ -766,7 +851,7 @@ Process the text or list of tokens for stemming or lemmatization.
 
   Union[str, List[str]]: Processed text or list of processed tokens.
 
-<a id="artifician.processors.text_processors.stemlemtizer.StemLemProcessor.subscribe"></a>
+<a id="artifician.processors.text.stemlemtizer.StemLemProcessor.subscribe"></a>
 
 #### subscribe
 
@@ -786,100 +871,9 @@ Subscribe to a publisher for event-driven processing.
 
   None
 
-<a id="artifician.processors.processor_chain_manager"></a>
-
-# artifician.processors.processor\_chain\_manager
-
-
-<a id="artifician.processors.processor_chain_manager.ProcessorChainManager"></a>
-
-## ProcessorChainManager Objects
-
-```python
-class ProcessorChainManager()
-```
-
-Manages a chain of processors.
-
-This class handles the sequential execution of a chain of processors and
-can subscribe to a publisher to trigger the processing.
-
-**Attributes**:
-
-- `processors` _list_ - A list of processors in the chain.
-
-<a id="artifician.processors.processor_chain_manager.ProcessorChainManager.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(processors=None) -> None
-```
-
-Initializes the ProcessorChainManager with an optional list of processors.
-
-**Arguments**:
-
-- `processors` _list, optional_ - An initial list of processors to be managed.
-
-<a id="artifician.processors.processor_chain_manager.ProcessorChainManager.then"></a>
-
-#### then
-
-```python
-def then(next_processor) -> 'ProcessorChainManager'
-```
-
-Adds a processor to the end of the chain.
-
-**Arguments**:
-
-- `processor` _Processor_ - The processor to add to the chain.
-  
-
-**Returns**:
-
-- `processor_chain_manager` _ProcessorChainManager_ - The ProcessorChainManager instance.
-
-<a id="artifician.processors.processor_chain_manager.ProcessorChainManager.process"></a>
-
-#### process
-
-```python
-def process(publisher, data: any) -> any
-```
-
-Processes data sequentially through the chain of processors.
-
-**Arguments**:
-
-- `data` - The data to be processed by the chain.
-  
-
-**Returns**:
-
-  The final processed data after passing through all processors.
-
-<a id="artifician.processors.processor_chain_manager.ProcessorChainManager.subscribe"></a>
-
-#### subscribe
-
-```python
-def subscribe(publisher, pool_scheduler=None) -> None
-```
-
-Subscribes the processor chain to a feature definition.
-
-The feature definition will trigger the processing of the chain.
-
-**Arguments**:
-
-- `feature_definition` _publisher_ - The feature definition to subscribe to.
-
 <a id="artifician.processors.normalizer"></a>
 
 # artifician.processors.normalizer
-
 
 <a id="artifician.processors.normalizer.Normalizer"></a>
 
@@ -1223,7 +1217,6 @@ Initialize a new KeywordExtractor object.
 
 # artifician.extractors.html\_extractors
 
-
 <a id="artifician.extractors.html_extractors.get_node_text"></a>
 
 #### get\_node\_text
@@ -1423,5 +1416,4 @@ Retrieves the value of a specified attribute from the first child of a given nod
 <a id="artifician.extractors"></a>
 
 # artifician.extractors
-
 
