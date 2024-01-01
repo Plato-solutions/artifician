@@ -1,103 +1,53 @@
-# Table of Contents
+# Table of contents
 
-* [Introduction](intro.md)
-  
-  * [“Turn your data preparation nightmares into a dream.”](intro.md#turn-your-data-preparation-nightmares-into-a-dream)
-    
-  * [Why Artifician?](intro.md#why-artifician)
-    
-  * [Simple Example](intro.md#simple-example)
-    
-  * [Without Artifician](intro.md#without-artifician)
-  
-  * [Using Artifician](intro.md#using-artifician)
-  
-  * [Output](intro.md#output)
- 
-* [Getting Started with Artifician](getting_started.md)
-  
-  * [Pre-requisites](getting_started.md#pre-requisites)
-    
-  * [Installation](getting_started.md#installation)
-    
-  * [Using pip](getting_started.md#using-pip)
-    
-  * [Using conda](getting_started.md#using-conda)
-    
-  * [Verify Installation](getting_started.md#verify-installation)
-    
-  * [Next Steps](getting_started.md#next-steps)
- 
-* [Quick Start](quick_start.md)
-
-  * [Define Extractor](quick_start.md#define-extractor)
-
-  * [Initialize components](quick_start.md#initialize-components)
-    
-  * [Subscriptions](quick_start.md#subscriptions)
- 
-  * [Dataset Preparation](quick_start.md#dataset-preparation)
-    
-  * [Output](quick_start.md#output)
-    
-* [Advanced Concepts](advanced_concepts.md)
-  
-  * [Processor Chaining](processor_chaining.md)
- 
-    * [Overview](processor_chaining.md#overview)
-    
-    * [Key Features](processor_chaining.md#key-features)
-      
-    * [Syntax Showcase](processor_chaining.md#syntax-showcase)
-      
-    * [Example Scenario: NLP Processing Pipeline](processor_chaining.md#example-scenario-nlp-processing-pipeline)
-      
-    * [Building an NLP Pipeline with processor chaining](processor_chaining.md#building-an-nlp-pipeline-with-pcm)
-      
-    * [Output](processor_chaining.md#output)
-      
-  * [Defining Custom Extractors](define_extractors.md)
-    
-    * [Introduction](define_extractors.md#introduction)
-      
-    * [Why Custom Extractors?](define_extractors.md#why-custom-extractors)
-      
-    * [How Extractors Work](define_extractors.md#how-extractors-work)
-      
-    * [Example of a Simple Extractor](define_extractors.md#example-of-a-simple-extractor)
-      
-    * [Integrating Custom Extractors](define_extractors.md#integrating-custom-extractors)
-      
-    * [Advanced Usage](define_extractors.md#advanced-usage)
-      
-    * [Conclusion](define_extractors.md#conclusion)
-  
-  * [Defining Custom Processors](define_processor.md)
-    
-    * [Introduction](define_processor.md#introduction)
-      
-    * [Why Custom Processors?](define_processor.md#why-custom-processors)
-      
-    * [How Processors Work](define_processor.md#how-processors-work)
-      
-    * [Example of a Simple Processor](define_processor.md#example-of-a-simple-processor)
-      
-    * [Integrating Custom Processors](define_processor.md#integrating-custom-processors)
-      
-    * [Advanced Usage](define_processor.md#advanced-usage)
-      
-    * [Conclusion](define_processor.md#conclusion)
-      
-  * [Library Architecture](library_architecture.md)
-    
-    * [Events](library_architecture.md#events)
-      
-    * [Dataset](library_architecture.md#dataset)
-      
-    * [Feature Definition](library_architecture.md#feature-definition)
-      
-    * [Processors](library_architecture.md#processors)
-      
-    * [Extractors](library_architecture.md#extractors)
-      
+* [Introduction](README.md)
+  * [“Turn your data preparation nightmares into a dream.”](README.md#turn-your-data-preparation-nightmares-into-a-dream)
+  * [Why Artifician?](README.md#why-artifician)
+  * [Simple Example](README.md#simple-example)
+  * [Without Artifician](README.md#without-artifician)
+  * [Using Artifician](README.md#using-artifician)
+  * [Output](README.md#output)
+* [Getting Started with Artifician](getting\_started.md)
+  * [Pre-requisites](getting\_started.md#pre-requisites)
+  * [Installation](getting\_started.md#installation)
+  * [Using pip](getting\_started.md#using-pip)
+  * [Using conda](getting\_started.md#using-conda)
+  * [Verify Installation](getting\_started.md#verify-installation)
+  * [Next Steps](getting\_started.md#next-steps)
+* [Quick Start](quick\_start.md)
+  * [Define Extractor](quick\_start.md#define-extractor)
+  * [Initialize components](quick\_start.md#initialize-components)
+  * [Subscriptions](quick\_start.md#subscriptions)
+  * [Dataset Preparation](quick\_start.md#dataset-preparation)
+  * [Output](quick\_start.md#output)
+* [Advanced Concepts](advanced\_concepts.md)
+  * [Processor Chaining](processor\_chaining.md)
+    * [Overview](processor\_chaining.md#overview)
+    * [Key Features](processor\_chaining.md#key-features)
+    * [Syntax Showcase](processor\_chaining.md#syntax-showcase)
+    * [Example Scenario: NLP Processing Pipeline](processor\_chaining.md#example-scenario-nlp-processing-pipeline)
+    * [Building an NLP Pipeline with processor chaining](processor\_chaining.md#building-an-nlp-pipeline-with-pcm)
+    * [Output](processor\_chaining.md#output)
+  * [Defining Custom Extractors](define\_extractors.md)
+    * [Introduction](define\_extractors.md#introduction)
+    * [Why Custom Extractors?](define\_extractors.md#why-custom-extractors)
+    * [How Extractors Work](define\_extractors.md#how-extractors-work)
+    * [Example of a Simple Extractor](define\_extractors.md#example-of-a-simple-extractor)
+    * [Integrating Custom Extractors](define\_extractors.md#integrating-custom-extractors)
+    * [Advanced Usage](define\_extractors.md#advanced-usage)
+    * [Conclusion](define\_extractors.md#conclusion)
+  * [Defining Custom Processors](define\_processor.md)
+    * [Introduction](define\_processor.md#introduction)
+    * [Why Custom Processors?](define\_processor.md#why-custom-processors)
+    * [How Processors Work](define\_processor.md#how-processors-work)
+    * [Example of a Simple Processor](define\_processor.md#example-of-a-simple-processor)
+    * [Integrating Custom Processors](define\_processor.md#integrating-custom-processors)
+    * [Advanced Usage](define\_processor.md#advanced-usage)
+    * [Conclusion](define\_processor.md#conclusion)
+  * [Library Architecture](library\_architecture.md)
+    * [Events](library\_architecture.md#events)
+    * [Dataset](library\_architecture.md#dataset)
+    * [Feature Definition](library\_architecture.md#feature-definition)
+    * [Processors](library\_architecture.md#processors)
+    * [Extractors](library\_architecture.md#extractors)
 * [API Reference](api.md)
