@@ -1,4 +1,4 @@
-from artifician.processors.text_processors.stemlemtizer import StemLemProcessor
+from artifician.processors.text.stemlemtizer import StemLemProcessor
 import pytest
 class publisher:
     def __init__(self) -> None:

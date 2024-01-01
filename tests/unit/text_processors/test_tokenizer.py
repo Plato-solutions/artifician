@@ -1,5 +1,5 @@
 import pytest
-from artifician.processors.text_processors.tokenizer import TokenizationProcessor
+from artifician.processors.text.tokenizer import TokenizationProcessor
 
 # Test 1: Test Word Tokenization
 

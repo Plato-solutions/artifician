@@ -12,9 +12,9 @@ def test_processor_chain_with_init_method():
     text_normalizer = Normalizer(PropertiesNormalizer(), delimiter = {'delimiter': [" "]})
     mapper = Mapper(feature_map=FeatureMap({"": 0}))
 
-    chain = ProcessorChainManager([text_normalizer, mapper])
+    processor_chain = chain([text_normalizer, mapper])
 
-    chain.subscribe(feature)
+    processor_chain.subscribe(feature)
     expected_ouput = [[1], [2,3], [2,4]]
     datastore = dataset.add_samples(list(html_elements))
     assert expected_ouput == list(datastore[1].values)

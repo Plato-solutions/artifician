@@ -1,4 +1,4 @@
-from artifician.processors.text_processors.text_cleaner import TextCleaningProcessor
+from artifician.processors.text.text_cleaner import TextCleaningProcessor
 
 class publisher:
     def __init__(self) -> None:

@@ -1,6 +1,4 @@
 from artifician import *
-
-
 import pytest
 
 class TestProcessorChainManager:
@@ -33,14 +31,14 @@ class TestProcessorChainManager:
             def __init__(self):
                 super().__init__()
         processor = ProcessorWithoutProcessMethod()
-        manager = ProcessorChainManager()
+        manager = chain()
 
         with pytest.raises(TypeError):
             manager.then(processor)
 
     # raises a RuntimeError when processing an empty processor chain
     def test_process_empty_chain(self):
-        manager = ProcessorChainManager()
+        manager = chain()
         publisher = Dataset()
         data = "data"
 

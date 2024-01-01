@@ -1,5 +1,5 @@
 import pytest
-from artifician.processors.text_processors.stop_word_remover import StopWordsRemoverProcessor
+from artifician.processors.text.stop_word_remover import StopWordsRemoverProcessor
 
 
 class publisher:
