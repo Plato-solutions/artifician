@@ -37,7 +37,7 @@ class chain:
             processor (Processor): The processor to add to the chain.
 
         Returns:
-            processor_chain_manager (chain): The chain instance.
+            processor_chaining (chain): The chain instance.
         """
         if not isinstance(next_processor, list):
             next_processor = [next_processor]
